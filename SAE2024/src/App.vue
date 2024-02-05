@@ -1,9 +1,11 @@
 <script>
 import {RouterLink,RouterView } from 'vue-router'
+import Navigation from './components/navigation.vue'
 
 export default {
   components: {
-    RouterView
+    RouterView,
+    Navigation
   },
 }
 </script>
@@ -11,6 +13,7 @@ export default {
 
 
 <template>
+  <Navigation/>
   <RouterView />
 </template>
 

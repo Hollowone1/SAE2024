@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Accueil from '../views/Accueil.vue'
 import ConnexionView from '../views/ConnexionView.vue'
-import InscriptionView from '../views/InscriptionView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
