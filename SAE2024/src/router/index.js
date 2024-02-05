@@ -3,7 +3,7 @@ import accueil from '../views/AccueilView.vue'
 import ConnexionView from '../views/ConnexionView.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',

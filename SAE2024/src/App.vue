@@ -1,5 +1,5 @@
 <script>
-import {RouterView } from 'vue-router'
+import RouterView  from 'vue-router'
 import Navigation from './components/navigation.vue'
 
 export default {
