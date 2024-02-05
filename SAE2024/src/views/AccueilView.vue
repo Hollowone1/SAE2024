@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #333;
+    background-color: #1F1E2E;
   }
   
   .nav-link {
