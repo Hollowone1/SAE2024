@@ -8,8 +8,11 @@
             layer-type="base"
             name="OpenStreetMap"
           ></l-tile-layer>
-          <l-marker :lat-lng="markerLatLng"></l-marker>
+          <l-marker :lat-lng="markerLatLng" @click="showMarkerInfo"></l-marker>
         </l-map>
+      </div>
+      <div>
+        <p v-if="selectedMarker">Latitude: {{ selectedMarker[0] }}, Longitude: {{ selectedMarker[1] }}</p>
       </div>
     </div>
   </template>
@@ -29,12 +32,16 @@
         zoom: 2,
         center: [47.41322, -1.219482],
         markerLatLng: [0, 0],
+        selectedMarker: null,
       };
     },
     methods: {
       updateMarker(event) {
         const latLng = event.latlng;
         this.markerLatLng = [latLng.lat, latLng.lng];
+      },
+      showMarkerInfo() {
+        this.selectedMarker = this.markerLatLng;
       },
     },
   };
