@@ -20,6 +20,8 @@ a {
   font-family: 'Protest Riot', sans-serif;
   background-color: #42B480;
   color: #ffffff;
+  border: 2px solid ;
+  border-radius: 20px;
 }
 
 </style>

@@ -15,15 +15,32 @@
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
 
-nav{
-    display: 'flex';
-    
-}    
 
-a{
-    justify-content: 'space-around';
-    text-decoration: none;
-    font-family: 'Protest Riot', sans-serif;
+nav {
+  background-color: #333; 
+  padding: 10px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+a {
+  font-family: 'Protest Riot',sans-serif;
+  text-decoration: none; 
+  color: #fff; 
+  margin: 0 15px; 
+  transition: color 0.3s; 
+}
+
+a:hover {
+  color: #ecf0f1; 
+}
+
+h1 {
+  font-family: 'Protest Riot',sans-serif;
+  color: #fff; 
+  margin: 0; 
+}
+
 
 </style>
