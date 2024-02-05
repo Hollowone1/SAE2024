@@ -12,6 +12,7 @@
 
   .page-container {
     display: flex;
+    padding: 20px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
