@@ -22,12 +22,13 @@ class SignupAction extends AbstractAction
     {
         $data = $request->getParsedBody();
         $email = $data['email'];
+        echo $email;
         $password = $data['password'];
         $username = $data['username'];
 
         if (isset($email) && isset($password) && isset($username)) {
             try {
-                $response->getBody()->write(json_encode($this->JWTAuthService->signUp($username, $password, $email)));
+                $response->getBody()->write(json_encode($this->JWTAuthService->signUp($username, $email, $password)));
                 return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
             } catch (CredentialsException) {
                 $response->getBody()->write(json_encode(['error' => 'Invalid credentials']));
