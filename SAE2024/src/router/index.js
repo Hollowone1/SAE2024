@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Accueil from '../views/Accueil.vue'
+import accueil from '../views/AccueilView.vue'
 import ConnexionView from '../views/ConnexionView.vue'
 
 const router = createRouter({
@@ -8,7 +8,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'accueil',
-      component: Accueil
+      component: accueil
     },
     {
       path: '/auth',
