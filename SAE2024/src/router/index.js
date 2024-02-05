@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import accueil from '@/views/AccueilView.vue'
 import ConnexionView from '@/views/ConnexionView.vue'
-import AuthView from "@/views/AuthView.vue";
+import AuthView from "@/views/AuthView.vue"
+import GameView from "@/views/GameView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,8 +22,14 @@ const router = createRouter({
           name: 'auth/login',
           component: ConnexionView,
         }
-  ]
-},
+      ]
+    },
+    {
+      path:'/nouvelle-partie',
+      name:'nouvelle-partie',
+      component: GameView
+    },
+      
 
 ]})
 
