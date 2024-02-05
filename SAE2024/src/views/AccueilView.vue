@@ -1,14 +1,14 @@
 <template>
-    <div class="page-container">
-      <router-link to="./nouvelle-partie" class="nav-link">Nouvelle Partie</router-link>
-      <router-link to="./Replay" class="nav-link">Rejouer une partie</router-link>
-      <router-link to="./Profil" class="nav-link">Mon profil</router-link>
-    </div>
-  </template>
-  
-  <style scoped>
+  <div class="page-container">
+    <router-link to="./nouvelle-partie" class="nav-link">Nouvelle Partie</router-link>
+    <router-link to="./Replay" class="nav-link">Rejouer une partie</router-link>
+    <router-link to="./Profil" class="nav-link">Mon profil</router-link>
+  </div>
+</template>
 
-    @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+<style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
 
   .page-container {
     display: flex;

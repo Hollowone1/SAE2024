@@ -1,6 +1,6 @@
 <template>
  <nav>
-    <routerLink to="../views/NouvellePartie.view">Nouvelle Partie</routerLink>
+    <routerLink to="/nouvelle-partie">Nouvelle Partie</routerLink>
     <routerLink to="/"><h1>Géo-Quizz</h1></routerLink>
     <routerLink to="../views/Profil.view">Mon profil</routerLink>
  </nav>
@@ -37,9 +37,7 @@ html {
   margin: 0;
   padding: 0;
 }
-h1:hover {
-  color: #42B480;
-}
+
 h1 {
   font-family: "Protest Riot", sans-serif;
   color: #fff;
