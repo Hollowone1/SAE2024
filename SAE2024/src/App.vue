@@ -1,22 +1,19 @@
 <script>
-import RouterView  from 'vue-router'
-import Navigation from './components/navigation.vue'
+ import {RouterView } from 'vue-router'
+ import Navigation from './components/navigation.vue'
 
-export default {
+ export default {
   components: {
-    RouterView,
     Navigation
   },
 }
 </script>
 
-
-
 <template>
   <div id="app"></div>
-  <RouterView />
   <Navigation/>
+  <RouterView />
 </template>
 
-<style scoped>
+<style>
 </style>

@@ -1,2 +1,8 @@
-## Constitution du groupe: 
-## Tamourgh Elias, Bresson Jules, Rionde Antoine, Stoecklin Antoine, Serrier Mattéo
+# Atelier - GeoQuizz
+
+## Constitution du groupe:  
+- Bresson Jules
+- Rionde Antoine
+- Serrier Mattéo
+- Stoecklin Antoine
+- Tamourgh Elias
