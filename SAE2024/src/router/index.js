@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import accueil from '../views/AccueilView.vue'
-import ConnexionView from '../views/ConnexionView.vue'
-import AuthView from '../views/AuthView.vue'
+import accueil from '@/views/AccueilView.vue'
+import ConnexionView from '@/views/ConnexionView.vue'
+import AuthView from "@/views/AuthView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
