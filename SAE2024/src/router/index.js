@@ -26,10 +26,8 @@ const router = createRouter({
             path: '/nouvelle-partie',
             name: 'nouvelle-partie',
             component: GameView,
-            // meta: { requiresAuth: true }
+            meta: { requiresAuth: true }
         },
-
-
     ]
 })
 
