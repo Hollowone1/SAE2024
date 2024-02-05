@@ -26,6 +26,7 @@ class JWTAuthService implements IJWTAuthService
 
     /**
      * @throws CredentialsException
+     * @throws RandomException
      */
     public function signIn($email, $password): ?array
     {

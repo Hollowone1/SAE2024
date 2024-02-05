@@ -3,7 +3,6 @@
 use geoquizz\auth\api\domain\service\classes\AuthService;
 use geoquizz\auth\api\domain\service\classes\JWTAuthService;
 use geoquizz\auth\api\domain\service\classes\JWTManager;
-use geoquizz\shop\domain\service\classes\OrderService;
 use Psr\Container\ContainerInterface;
 
 return [

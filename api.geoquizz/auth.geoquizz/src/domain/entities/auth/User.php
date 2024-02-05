@@ -1,5 +1,6 @@
 <?php
 
+namespace geoquizz\auth\api\domain\entities\auth;
 
 use Illuminate\Database\Eloquent\Model;
 use geoquizz\auth\api\domain\dto\auth\UserDTO;
