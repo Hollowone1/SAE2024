@@ -2,7 +2,42 @@
 
 namespace geoquizz\auth\api\app\actions;
 
-class SignupAction
-{
+use geoquizz\auth\api\domain\exceptions\CredentialsException;
+use geoquizz\auth\api\domain\exceptions\UserException;
+use geoquizz\auth\api\domain\service\classes\JWTAuthService;
+use Psr\Container\ContainerInterface;
+use Slim\Psr7\Request;
+use Slim\Psr7\Response;
 
+class SignupAction extends AbstractAction
+{
+    private JWTAuthService $JWTAuthService;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->JWTAuthService = $container->get('jwtauth.service');
+    }
+
+    public function __invoke(Request $request, Response $response, array $args)
+    {
+        $data = $request->getParsedBody();
+        $email = $data['email'];
+        $password = $data['password'];
+        $username = $data['username'];
+
+        if (isset($email) && isset($password) && isset($username)) {
+            try {
+                $response->getBody()->write(json_encode($this->JWTAuthService->signUp($username, $password, $email)));
+                return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+            } catch (CredentialsException) {
+                $response->getBody()->write(json_encode(['error' => 'Invalid credentials']));
+                return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
+            } catch (UserException $e) {
+                $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
+                return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+            }
+        }
+        $response->getBody()->write(json_encode(['error' => 'Invalid credentials']));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
+    }
 }
