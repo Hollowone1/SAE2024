@@ -1,14 +1,7 @@
-<template>
-    <div class="page-container">
-      <router-link to="./NouvellePartie" class="nav-link">Nouvelle Partie</router-link>
-      <router-link to="./Replay" class="nav-link">Rejouer une partie</router-link>
-      <router-link to="./Profil" class="nav-link">Mon profil</router-link>
-    </div>
-  </template>
-  
-  <style scoped>
+@import url(_nav.scss);
 
-    @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
 
   .page-container {
     display: flex;
@@ -33,10 +26,3 @@
     width: 25%;
     text-align: center;
   }
-  </style>
-  
-
-<script>
-
-
-</script>

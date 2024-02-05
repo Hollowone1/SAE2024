@@ -1,0 +1,25 @@
+nav {
+  background-color: #28293E;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  font-family: "Protest Riot", sans-serif;
+  text-decoration: none;
+  color: #fff;
+  margin: 0 15px;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #ecf0f1;
+}
+
+h1 {
+  font-family: "Protest Riot", sans-serif;
+  color: #fff;
+  margin: 0;
+}

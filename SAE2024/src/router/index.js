@@ -4,7 +4,7 @@ import ConnexionView from '@/views/ConnexionView.vue'
 import AuthView from "@/views/AuthView.vue";
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
