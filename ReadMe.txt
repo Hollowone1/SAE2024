@@ -1,1 +1,1 @@
-Constitution des groupes: Tamourgh Elias, Bresson Jules, Rionde Antoine, Stoecklin Antoine
+Constitution des groupes: Tamourgh Elias, Bresson Jules, Rionde Antoine, Stoecklin Antoine, Serrier Mattéo
