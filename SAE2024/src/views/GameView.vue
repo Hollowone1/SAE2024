@@ -1,39 +1,33 @@
 <template>
  <h2> Map View</h2>
- <div id="game-container">
-    <img>
-
- </div>
-
+ <l-map style="height: 300px" :zoom="zoom" :center="center">
+    <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+    <l-marker :lat-lng="markerLatLng"></l-marker>
+  </l-map>
 </template>
 
 <script>
+import {LMap, LTileLayer, LMarker} from 'vue3-leaflet'
 
 export default{
-    data() {
+
+components: {
+    LMap,
+    LTileLayer,
+    LMarker
+  },
+
+  data () {
     return {
-        map : L.map('map', {
-    center: [51.505, -0.09],
-    zoom: 13
-    }),
-
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      zoom: 15,
+      center: [51.505, -0.159],
+      markerLatLng: [51.504, -0.159]
+    };
+  }
 }
-
-let map = getElementByID("Game-Container");
-
-
-});
-
-L.map('map').setView([51.505, -0.09], 13);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    L.marker([51.5, -0.09]).addTo(map)
-        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-        .openPopup();
-    }
 
 </script>
 
