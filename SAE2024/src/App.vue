@@ -1,5 +1,5 @@
 <script>
-import RouterView  from 'vue-router'
+import {RouterView} from 'vue-router'
 import Navigation from './components/navigation.vue'
 
 export default {
@@ -15,7 +15,7 @@ export default {
 <template>
   <div id="app"></div>
   <RouterView />
-  <Navigation/>
+  <Navigation />
 </template>
 
 <style scoped>
