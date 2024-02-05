@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import {LMap, LTileLayer, LMarker} from 'vue3-leaflet'
+import {LMap, LTileLayer, LMarker} from 'leaflet'
 
 export default{
 
