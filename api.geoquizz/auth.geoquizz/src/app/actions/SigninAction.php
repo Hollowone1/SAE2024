@@ -1,14 +1,12 @@
 <?php
 
+namespace geoquizz\auth\api\app\actions;
 
 use geoquizz\auth\api\domain\exceptions\CredentialsException;
-use geoquizz\auth\api\domain\service\classes\AuthService;
 use geoquizz\auth\api\domain\service\classes\JWTAuthService;
-use geoquizz\auth\api\domain\service\classes\JWTManager;
 use Psr\Container\ContainerInterface;
 
-
-class SigninAction extends \geoquizz\auth\api\app\actions\AbstractAction
+class SigninAction extends AbstractAction
 {
 
     private JWTAuthService $JWTAuthService;
@@ -16,12 +14,8 @@ class SigninAction extends \geoquizz\auth\api\app\actions\AbstractAction
     public function __construct(ContainerInterface $container)
     {
         $this->JWTAuthService = $container->get('jwtauth.service');
-
     }
 
-    /**
-     * @throws CredentialsException
-     */
     public function __invoke($request, $response, $args)
     {
         $h = $request->getHeader('Authorization')[0];

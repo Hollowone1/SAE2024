@@ -1,5 +1,7 @@
 <?php
 
+namespace geoquizz\auth\api\app\actions;
+
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
