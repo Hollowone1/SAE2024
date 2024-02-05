@@ -17,7 +17,7 @@
 
 
 nav {
-  background-color: #333; 
+  background-color: #28293E; 
   padding: 10px; 
   display: flex;
   justify-content: space-between;
