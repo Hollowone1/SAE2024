@@ -37,9 +37,7 @@ html {
   margin: 0;
   padding: 0;
 }
-h1:hover {
-  color: #42B480;
-}
+
 h1 {
   font-family: "Protest Riot", sans-serif;
   color: #fff;
