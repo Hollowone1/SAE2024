@@ -1,19 +1,24 @@
 <template>
     <div>
-      <h2>Map View</h2>
-      <div style="height: 600px; width: 800px">
-        <l-map ref="map" v-model:zoom="zoom" :center="center" @click="updateMarker">
-          <l-tile-layer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            layer-type="base"
-            name="OpenStreetMap"
-          ></l-tile-layer>
-          <l-marker :lat-lng="markerLatLng" @click="showMarkerInfo"></l-marker>
-        </l-map>
+      <h2>Devinez ou est située cette image ? </h2>
+      <div class="game-container">
+        <img src="../assets/a2c7fc86c6b887959f61fd704ff9d8c2bbc1c34f774d3dc41654207db787be9d.webp">
+        <div style="height: 636px; width: 800px; border: 2px solid grey">
+            <l-map ref="map" v-model:zoom="zoom" :center="center" @click="updateMarker">
+            <l-tile-layer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                layer-type="base"
+                name="OpenStreetMap"
+            ></l-tile-layer>
+            <l-marker :lat-lng="markerLatLng" @click="showMarkerInfo"></l-marker>
+            </l-map>
+        </div>
+        <div>
+            <p v-if="selectedMarker">Latitude: {{ selectedMarker[0] }}, Longitude: {{ selectedMarker[1] }}</p>
+        </div>
+
       </div>
-      <div>
-        <p v-if="selectedMarker">Latitude: {{ selectedMarker[0] }}, Longitude: {{ selectedMarker[1] }}</p>
-      </div>
+      
     </div>
   </template>
   
@@ -47,5 +52,14 @@
   };
   </script>
   
-  <style></style>
+  <style>
+    .game-container{
+        display: flex;
+        justify-content: center;
+    }
+    img{
+        width: 50%;
+        height: 50%;
+    }
+  </style>
   
