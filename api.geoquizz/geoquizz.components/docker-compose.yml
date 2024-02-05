@@ -1,0 +1,54 @@
+version: '3'
+networks:
+  geoquizz.net:
+    driver: bridge
+services:
+
+  #
+  # service administration des bases sql
+  #
+  adminer:
+    image: adminer
+    command: php -S 0.0.0.0:8080 -t /var/www/html
+    ports:
+      - '8081:8080' ## 40510
+    networks:
+      - geoquizz.net
+
+  ######################################
+  ###  AUTH Service : service d'authentification JWT
+  ###  api api.auth : auth, check, refresh de token JWT
+  ###  utilise sa propre base de données
+  ######################################
+  api.pizza-auth:
+    image: 'canals/php:8.2'
+    env_file: ./auth.env
+    ports:
+      - '2082:80' ## 40506
+      - '1444:443' ## 40507
+    volumes:
+      - ../auth.geoquizz/public:/var/www/html
+      - ../auth.geoquizz:/var/www
+    working_dir: /var/www
+    networks:
+      geoquizz.net:
+        aliases:
+          - auth.geoquizz.local
+    depends_on:
+      - geoquizz.auth.db
+    command: >
+      bash -c "composer install && composer update && apache2-foreground"
+
+  geoquizz.auth.db:
+    image: 'mariadb:latest'
+    command: '--default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci'
+    env_file: ./auth.env
+    ports:
+      - '3309:3306' ## 40508
+    networks:
+      - geoquizz.net
+    volumes:
+      - ../auth.geoquizz/sql:/var/sql
+      - ../auth.geoquizz/sql:/docker-entrypoint-initdb.d
+
+
