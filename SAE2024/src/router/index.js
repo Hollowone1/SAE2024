@@ -22,6 +22,8 @@ const router = createRouter({
           component: ConnexionView,
         }
   ]
-}]})
+},
+
+]})
 
 export default router
