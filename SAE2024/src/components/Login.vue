@@ -15,6 +15,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -24,7 +25,7 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$emit('login', this.email, this.password)
+      this.$emit('login', this.email, this.password);
     }
   }
 }

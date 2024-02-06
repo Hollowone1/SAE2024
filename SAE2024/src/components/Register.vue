@@ -18,6 +18,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -28,7 +29,7 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$emit('register', this.name, this.email, this.password)
+      this.$emit('register', this.name, this.email, this.password);
     }
   }
 }
@@ -45,12 +46,12 @@ p {
   margin-top: 0;
   text-align: left;
 }
+
 .register-container {
   background-color: #28293E; /* couleur de fond du reste du site */
   color: #ffffff; /* texte en blanc */
   border-radius: 10px; /* bord arrondis */
-  border: 3px solid;
-  border-color: #717394;
+  border: 3px solid #717394;
   padding: 10rem 5rem;
   width: 300px;
   text-align: initial;

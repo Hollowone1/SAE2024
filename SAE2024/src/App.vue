@@ -1,18 +1,19 @@
-<script>
- import Navigation from './components/navigation.vue'
+<template>
+  <div id="app">
+    <Navigation/>
+    <RouterView />
+  </div>
+</template>
 
- export default {
+<script>
+import Navigation from './components/navigation.vue'
+
+export default {
   components: {
-    Navigation
+    Navigation,
   },
 }
 </script>
-
-<template>
-  <div id="app"></div>
-  <Navigation/>
-  <RouterView />
-</template>
 
 <style>
 @import './assets/main.css';

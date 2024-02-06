@@ -14,19 +14,18 @@ export default {
     Login
   },
   methods: {
-    login(email, password) {
-      axios.post('http://localhost:2082/api/users/signin', {
-        email: email,
-        password: password
-      })
-      .then(response => {
+    async login(email, password) {
+      try {
+        const response = await axios.post('http://localhost:2082/api/users/signin', {
+          email: email,
+          password: password
+        })
         console.log(response.data)
         useAuthStore().setToken(response.data.token)
         this.$router.push('/accueil')
-      })
-      .catch(error => {
+      } catch (error) {
         console.log(error)
-      })
+      }
     }
   }
 }
