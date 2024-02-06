@@ -27,6 +27,7 @@
     </tbody>
  </table>
 
+<routerLink to="/" type="submit">Se déconnecter</routerLink>
 </template>
 
 <script>

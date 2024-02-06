@@ -4,7 +4,7 @@
       <div class="game-container">
         <img src="../assets/a2c7fc86c6b887959f61fd704ff9d8c2bbc1c34f774d3dc41654207db787be9d.webp">
         <div class="mapstyle">
-            <l-map ref="map" v-model:zoom="zoom" :center="center" @click="updateMarker">
+            <l-map ref="map" v-model:zoom="zoom" :center="center" :max-zoom="maxZoom" :min-zoom="minZoom" :zoom-control="false" :useGlobalLeaflet="false" @click="updateMarker">
             <l-tile-layer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 layer-type="base"
@@ -41,7 +41,9 @@
         center: [47.41322, -1.219482],
         markerLatLng: [0, 0],
         selectedMarker: null,
-      };
+        maxZoom: 18,
+        minZoom:1
+      }
     },
     methods: {
         onMapClick(e) {
@@ -71,5 +73,13 @@
   };
   </script>
   
+  <style scoped>
+  .mapstyle{
+    position: relative;
+  }
+  map{
+    position: absolute;
+  }
+  </style>
 
   
