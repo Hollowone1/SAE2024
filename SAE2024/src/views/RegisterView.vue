@@ -1,16 +1,61 @@
-<script>
+<template>
+  <div class="page-container">
+    <Register @register="register" class="nav-link"/>
+  </div>
+</template>
 
+<script>
+import Register from "../components/Register.vue";
+import {useAuthStore} from '../stores/authStore.js'
+import axios from 'axios'
+
+export default {
+  components: {
+    Register
+  },
+  methods: {
+    register(name, email, password) {
+      axios.post('http://localhost:2082/api/users/signup', {
+        name: name,
+        email: email,
+        password: password
+      })
+          .then(response => {
+            console.log(response.data)
+            useAuthStore().setToken(response.data.token)
+            this.$router.push('/accueil')
+          })
+          .catch(error => {
+            console.log(error)
+          })
+    }
+  }
+}
 </script>
 
-<template>
-  <main>
-    <h1>Authentification</h1>
-    <form @submit.prevent="login">
-      <label for="email">Email</label>
-      <input type="email" id="email" v-model="user.email" required>
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" v-model="user.password" required>
-      <button type="submit">Se connecter</button>
-    </form>
-  </main>
-</template>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #1F1E2E;
+}
+
+.nav-link {
+  font-family: 'Protest Riot', sans-serif;
+  text-decoration: none;
+  background-color: #42B480;
+  color: #ffff;
+  padding: 10px 20px;
+  margin: 1.5em;
+  border: 2px solid #42B480;
+  border-radius: 5px;
+  font-size: 24px;
+  width: 25%;
+  text-align: center;
+}
+</style>

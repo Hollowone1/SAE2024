@@ -1,15 +1,18 @@
 <template>
-  <div class="login-container">
-    <h1>Connectez-vous</h1>
+  <div class="register-container">
+    <h1>Inscrivez-vous</h1>
     <p>Pour commencer à jouer</p>
     <form @submit.prevent="submitForm">
-      <label for="email">Identifiant</label>
-      <input v-model="email" type="email" id="email" name="email" placeholder="Identifiant">
+      <label for="name">Nom</label>
+      <input v-model="name" type="text" id="name" name="name" placeholder="Nom">
+      <br>
+      <label for="email">Email</label>
+      <input v-model="email" type="email" id="email" name="email" placeholder="Email">
       <br>
       <label for="password">Mot de passe</label>
       <input v-model="password" type="password" id="password" name="password" placeholder="Mot de passe">
       <br>
-      <router-link type="submit" to="/"><button class="connexion">Connexion</button></router-link>
+      <router-link type="submit" to="/"><button class="connexion">Inscription</button></router-link>
     </form>
   </div>
 </template>
@@ -18,13 +21,14 @@
 export default {
   data() {
     return {
+      name: '',
       email: '',
       password: ''
     }
   },
   methods: {
     submitForm() {
-      this.$emit('login', this.email, this.password)
+      this.$emit('register', this.name, this.email, this.password)
     }
   }
 }
@@ -41,13 +45,13 @@ p {
   margin-top: 0;
   text-align: left;
 }
-.login-container {
+.register-container {
   background-color: #28293E; /* couleur de fond du reste du site */
   color: #ffffff; /* texte en blanc */
   border-radius: 10px; /* bord arrondis */
   border: 3px solid;
   border-color: #717394;
-  padding: 5rem 10rem;
+  padding: 10rem 5rem;
   width: 300px;
   text-align: initial;
   margin: auto;
