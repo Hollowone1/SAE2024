@@ -12,7 +12,7 @@
       <label for="password">Mot de passe</label>
       <input v-model="password" type="password" id="password" name="password" placeholder="Mot de passe">
       <br>
-      <router-link type="submit" to="/"><button class="inscription">Inscription</button></router-link>
+      <router-link type="submit" to="/"><button class="connexion">Inscription</button></router-link>
     </form>
   </div>
 </template>
