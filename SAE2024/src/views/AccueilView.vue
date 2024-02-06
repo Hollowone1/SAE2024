@@ -28,7 +28,6 @@ export default {
   height: 100vh;
   background-color: #1F1E2E;
 }
->>>>>>> 2f01b35de6c69cf0547744a3eedee101ad5d3706
 
 .nav-link {
   font-family: 'Protest Riot', sans-serif;
