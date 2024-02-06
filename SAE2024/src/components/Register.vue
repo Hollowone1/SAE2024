@@ -51,8 +51,10 @@ p {
   background-color: #28293E; /* couleur de fond du reste du site */
   color: #ffffff; /* texte en blanc */
   border-radius: 10px; /* bord arrondis */
-  border: 3px solid #717394;
-  padding: 10rem 5rem;
+  border: 3px solid;
+  padding: 20px;
+  border-color: hsl(237, 14%, 51%);
+  padding: 5rem 10rem;
   width: 300px;
   text-align: initial;
   margin: auto;

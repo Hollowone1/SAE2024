@@ -33,7 +33,6 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
 
 .page-container {
   display: flex;
