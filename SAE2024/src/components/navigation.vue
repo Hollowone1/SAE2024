@@ -2,24 +2,19 @@
  <nav>
     <routerLink to="/nouvelle-partie">Nouvelle Partie</routerLink>
     <routerLink to="/"><h1>Géo-Quizz</h1></routerLink>
-   <routerLink v-if="isLoggedIn" to="../views/Profil.view">Mon profil</routerLink>
-   <div v-else>
-     <routerLink to="/register">Inscription</routerLink>
-     <routerLink to="/login">Connexion</routerLink>
-   </div>
+    <router-link v-if="utilisateurConnecte" to="/profil">Mon profil</router-link>
  </nav>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      isLoggedIn: false,
-    };
-  },
-};
+    export default {
+        data() {
+        return {
+            utilisateurConnecte: false,
+        };
+    },
+    }
 </script>
-
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap");
 
