@@ -3,6 +3,7 @@ import accueil from '@/views/AccueilView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from "@/views/RegisterView.vue"
 import GameView from "@/views/GameView.vue"
+import ProfilView from "@/views/ProfilView.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,12 @@ const router = createRouter({
             component: GameView,
             meta: { requiresAuth: true }
         },
+        {
+          path: '/profil',
+          name: 'profil',
+          component: ProfilView,
+          meta: { requiresAuth: true }
+      },
     ]
 })
 
