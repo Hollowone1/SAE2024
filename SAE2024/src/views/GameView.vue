@@ -52,32 +52,5 @@
   };
   </script>
   
-  <style>
-      @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
 
-    .game-container{
-        display: flex;
-        justify-content: center;
-    }
-    img{
-        width: 50%;
-        height: auto;
-    }
-
-    .page-container {
-    display: flex;
-    flex-direction: column;
-    color: #ffffff;
-    font-family: 'Protest Riot', sans-serif;
-    padding: 20px;
-    height: 100vh;
-    background-color: #1F1E2E;
-  }
-
-    .mapstyle{
-      height: auto; 
-      width: 50%; 
-      border: 2px solid grey;
-    }
-  </style>
   

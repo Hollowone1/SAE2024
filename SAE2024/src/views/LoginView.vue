@@ -35,14 +35,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
 
-.page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #1F1E2E;
-}
+
 
 .nav-link {
   font-family: 'Protest Riot', sans-serif;
