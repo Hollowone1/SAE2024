@@ -56,4 +56,14 @@ p {
   text-align: initial;
   margin: auto;
 }
+
+@media screen and (max-width: 768px) {
+  .register-container {
+    padding:0;
+    margin-top: 2rem; /* Réduire le padding pour les écrans réduits */
+    width: 100%; /* Utiliser la largeur maximale de l'écran */
+    border: none;
+    background: none;
+  }
+}
 </style>

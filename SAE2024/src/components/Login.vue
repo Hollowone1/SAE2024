@@ -46,10 +46,21 @@ p {
   color: #ffffff; /* texte en blanc */
   border-radius: 10px; /* bord arrondis */
   border: 3px solid;
-  border-color: #717394;
+  padding: 20px;
+  border-color: hsl(237, 14%, 51%);
   padding: 5rem 10rem;
   width: 300px;
   text-align: initial;
   margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .login-container {
+    padding:0;
+    margin-top: 2rem; /* Réduire le padding pour les écrans réduits */
+    width: 100%; /* Utiliser la largeur maximale de l'écran */
+    border: none;
+    background: none;
+  }
 }
 </style>
