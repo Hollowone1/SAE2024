@@ -1,18 +1,23 @@
-<script>
- import Navigation from './components/navigation.vue'
+<template>
+  <div id="app">
+    <Navigation/>
+    <ToastContainer />
+    <RouterView />
+  </div>
+</template>
 
- export default {
+<script>
+import Navigation from './components/navigation.vue'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export default {
   components: {
-    Navigation
+    Navigation,
+    ToastContainer
   },
 }
 </script>
-
-<template>
-  <div id="app"></div>
-  <Navigation/>
-  <RouterView />
-</template>
 
 <style>
 @import './assets/main.css';
