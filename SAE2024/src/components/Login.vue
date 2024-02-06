@@ -9,7 +9,7 @@
       <label for="password">Mot de passe</label>
       <input v-model="password" type="password" id="password" name="password" placeholder="Mot de passe">
       <br>
-      <router-link type="submit" to="/" class="connexion">Connexion</router-link>
+      <router-link type="submit" to="/"><button class="connexion">Connexion</button></router-link>
     </form>
   </div>
 </template>
@@ -30,54 +30,26 @@ export default {
 }
 </script>
 
-
 <style scoped>
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+p {
+  margin-top: 0;
+  text-align: left;
+}
 .login-container {
-  background-color: #1F1E2E; /* couleur de fond du reste du site */
+  background-color: #28293E; /* couleur de fond du reste du site */
   color: #ffffff; /* texte en blanc */
   border-radius: 10px; /* bord arrondis */
-  padding: 20px;
+  border: 3px solid;
+  border-color: #717394;
+  padding: 10rem 5rem;
   width: 300px;
+  text-align: initial;
   margin: auto;
 }
-
-.nav-link {
-  font-family: 'Protest Riot', sans-serif;
-  text-decoration: none;
-  color: #ffff;
-  padding: 10px 20px;
-  margin: 1.5em;
-  border: 2px solid #717295;
-  border-radius: 5px;
-  font-size: 20px;
-  width: 25%;
-  text-align: initial;
-}
-
-h1 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  transition: none;
-}
-
-a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 20px;
-  transition: none;
-}
-
-.connexion {
-  background-color: #42B480;
-  color: #ffffff;
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  font-size: 20px;
-  width: 100%;
-  text-align: center;
-}
-
 </style>
