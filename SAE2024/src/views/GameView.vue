@@ -13,9 +13,17 @@
             <l-marker :lat-lng="markerLatLng" @click="showMarkerInfo"></l-marker>
             </l-map>
         </div>
-        <div>
-            <p v-if="selectedMarker">Latitude: {{ selectedMarker[0] }}, Longitude: {{ selectedMarker[1] }}</p>
-        </div>
+        <div v-if="gameStatus === 'correct'">
+                <p>Correct guess!</p>
+                <button @click="resetGame">Next Round</button>
+            </div>
+            <div v-else-if="gameStatus === 'incorrect'">
+                <p>Incorrect guess. Try again!</p>
+                <button @click="resetGame">Retry</button>
+            </div>
+            <div v-else>
+                <p>Click on the map to make a guess!</p>
+            </div>
 
       </div>
       
@@ -41,13 +49,29 @@
       };
     },
     methods: {
-      updateMarker(event) {
-        const latLng = event.latlng;
-        this.markerLatLng = [latLng.lat, latLng.lng];
-      },
-      showMarkerInfo() {
-        this.selectedMarker = this.markerLatLng;
-      },
+        onMapClick(e) {
+            this.clickedLocation = e.latlng;
+            const distance = this.map.distance(this.clickedLocation, this.targetLocation);
+
+            if (distance < this.threshold) {
+                this.gameStatus = 'correct';
+            } else {
+                this.gameStatus = 'incorrect';
+            }
+        },
+        resetGame() {
+            this.targetLocation = this.getRandomLocation();
+            this.clickedLocation = null;
+            this.gameStatus = 'waiting';
+        },
+        getRandomLocation() {
+            const lat = this.getRandomCoordinate(-90, 90);
+            const lng = this.getRandomCoordinate(-180, 180);
+            return [lat, lng];
+        },
+        getRandomCoordinate(min, max) {
+            return Math.random() * (max - min) + min;
+        },
     },
   };
   </script>
