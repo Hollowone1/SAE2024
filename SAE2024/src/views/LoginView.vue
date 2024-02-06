@@ -13,26 +13,20 @@ export default {
   components: {
     Login
   },
-  setup() {
-    const authStore = useAuthStore()
-
-    const login = async (email, password) => {
-      try {
-        const response = await axios.post('http://localhost:2082/api/users/signin', {
-          email,
-          password
-        })
-
-        const apiKey = response.data.apiKey
-
-        authStore.setApiKey(apiKey)
-      } catch (error) {
-        console.error('Erreur lors de l\'authentification de l\'utilisateur', error)
-      }
-    }
-
-    return {
-      login
+  methods: {
+    login(email, password) {
+      axios.post('http://localhost:2082/api/users/signin', {
+        email: email,
+        password: password
+      })
+      .then(response => {
+        console.log(response.data)
+        useAuthStore().setToken(response.data.token)
+        this.$router.push('/accueil')
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
   }
 }
