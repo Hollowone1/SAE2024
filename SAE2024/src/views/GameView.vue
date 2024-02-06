@@ -14,17 +14,12 @@
             </l-map>
         </div>
         <div v-if="gameStatus === 'correct'">
-                <p>Correct guess!</p>
-                <button @click="resetGame">Next Round</button>
-            </div>
-            <div v-else-if="gameStatus === 'incorrect'">
-                <p>Incorrect guess. Try again!</p>
-                <button @click="resetGame">Retry</button>
-            </div>
-            <div v-else>
-                <p>Click on the map to make a guess!</p>
-            </div>
-
+              <p>Vous avez trouvé</p>
+              <button @click="resetGame">Images suivante</button>
+        </div>
+        <div v-else-if="gameStatus === 'incorrect'">
+            <p>Incorrect</p>
+        </div>
       </div>
       
     </div>
