@@ -6,10 +6,6 @@
   </div>
 </template>
 
-<<<<<<< HEAD
-
-  
-=======
 <script>
 export default {
   data() {
