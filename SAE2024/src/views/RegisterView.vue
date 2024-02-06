@@ -26,7 +26,6 @@ export default {
         this.$router.push('/accueil')
       } catch (error) {
         console.log(error)
-        toast.error('Erreur lors de l\'inscription');
       }
     }
   }

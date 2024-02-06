@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { toast } from 'react-toastify';
 
 export default {
   data() {
@@ -31,7 +30,6 @@ export default {
   methods: {
     submitForm() {
       this.$emit('register', this.name, this.email, this.password);
-      toast.success('Inscription réussie !');
     }
   }
 }

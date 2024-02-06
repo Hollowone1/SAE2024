@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { toast } from 'react-toastify';
 
 export default {
   data() {
@@ -27,7 +26,6 @@ export default {
   methods: {
     submitForm() {
       this.$emit('login', this.email, this.password);
-      toast.success('Connexion réussie !');
     }
   }
 }
