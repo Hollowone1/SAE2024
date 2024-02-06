@@ -10,7 +10,7 @@
                 layer-type="base"
                 name="OpenStreetMap"
             ></l-tile-layer>
-            <l-marker @onMapClick="markerLatLng"></l-marker>
+            <l-marker @onMapClick="clickedLocation"></l-marker>
             </l-map>
         </div>
       </div>
@@ -40,7 +40,6 @@
     },
     methods: {
         onMapClick(e) {
-          this.markerLatLng= e.latLng;
             this.clickedLocation = e.latlng;
             const distance = this.map.distance(this.clickedLocation, this.targetLocation);
 
@@ -49,20 +48,7 @@
             } else {
                 this.gameStatus = 'incorrect';
             }
-        },
-        resetGame() {
-            this.targetLocation = this.getRandomLocation();
-            this.clickedLocation = null;
-            this.gameStatus = 'waiting';
-        },
-        getRandomLocation() {
-            const lat = this.getRandomCoordinate(-90, 90);
-            const lng = this.getRandomCoordinate(-180, 180);
-            return [lat, lng];
-        },
-        getRandomCoordinate(min, max) {
-            return Math.random() * (max - min) + min;
-        },
+        }
     },
   };
   </script>
