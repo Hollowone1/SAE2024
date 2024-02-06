@@ -4,15 +4,11 @@
       <div class="game-container">
         <img src="../assets/a2c7fc86c6b887959f61fd704ff9d8c2bbc1c34f774d3dc41654207db787be9d.webp">
         <div class="mapstyle">
-            <l-map ref="map" v-model:zoom="zoom" :center="center" :max-zoom="maxZoom" :min-zoom="minZoom" :zoom-control="false" :useGlobalLeaflet="false" @click="updateMarker">
-            <l-tile-layer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                layer-type="base"
-                name="OpenStreetMap"
-            ></l-tile-layer>
-            <l-marker @onMapClick="markerLatLng"></l-marker>
-            </l-map>
-        </div>
+        <l-map ref="map" v-model:zoom="zoom" :center="center" :max-zoom="maxZoom" :min-zoom="minZoom" :zoom-control="false" :useGlobalLeaflet="false" @click="placeMarker">
+          <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"></l-tile-layer>
+          <l-marker :lat-lng="markerLatLng" :draggable="true" @dragend="onMarkerDragEnd"></l-marker>
+        </l-map>
+      </div>
       </div>
       
     </div>
@@ -34,6 +30,7 @@
       center: [48.6921, 6.1844], // Coordonnées de la ville de Nancy
       clickedLocation: null,
       gameStatus: 'waiting',
+      markerLatLng: [48.6921, 6.1844], // Initialiser avec les coordonnées de départ
       maxZoom: 18,
       minZoom: 1,
       markers: []
@@ -63,6 +60,12 @@
         getRandomCoordinate(min, max) {
             return Math.random() * (max - min) + min;
         },
+        placeMarker(event) {
+      this.markerLatLng = event.latlng;
+    },
+    onMarkerDragEnd(event) {
+      this.markerLatLng = event.target.getLatLng();
+    },
     },
   };
   </script>
