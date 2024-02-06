@@ -30,12 +30,12 @@
     },
     data() {
       return {
-        zoom: 2,
-        center: [47.41322, -1.219482],
-        markerLatLng: [0, 0],
-        selectedMarker: null,
-        maxZoom: 18,
-        minZoom:1
+      zoom: 12, // Augmenter le niveau de zoom pour que la ville de Nancy soit visible
+      center: [48.6921, 6.1844], // Coordonnées de la ville de Nancy
+      clickedLocation: null,
+      gameStatus: 'waiting',
+      maxZoom: 18,
+      minZoom: 1
       }
     },
     methods: {
