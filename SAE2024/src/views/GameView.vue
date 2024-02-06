@@ -9,9 +9,9 @@
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 layer-type="base"
                 name="OpenStreetMap"
-            ></l-tile-layer>  
-            <l-marker v-if="clickedLocation" :lat-lng="clickedLocation" :icon="gameStatus === 'correct' ? 'successIcon' : 'errorIcon'"></l-marker>  
-          </l-map>
+            ></l-tile-layer>
+            <l-marker @onMapClick="markerLatLng"></l-marker>
+            </l-map>
         </div>
       </div>
       
@@ -41,7 +41,6 @@
     },
     methods: {
         onMapClick(e) {
-          this.markerLatLng= e.latLng;
             this.clickedLocation = e.latlng;
             const distance = this.map.distance(this.clickedLocation, this.targetLocation);
 
@@ -64,13 +63,6 @@
         getRandomCoordinate(min, max) {
             return Math.random() * (max - min) + min;
         },
-        addMarker(latLng) {
-      this.markers.push({ latLng });
-    },
-    // Méthode pour réinitialiser les marqueurs
-    resetMarkers() {
-      this.markers = [];
-    },
     },
   };
   </script>
