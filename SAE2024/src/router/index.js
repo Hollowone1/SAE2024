@@ -27,13 +27,13 @@ const router = createRouter({
             path: '/nouvelle-partie',
             name: 'nouvelle-partie',
             component: GameView,
-            meta: { requiresAuth: true }
+            // meta: { requiresAuth: true }
         },
         {
           path: '/profil',
           name: 'profil',
           component: ProfilView,
-          meta: { requiresAuth: true }
+        //   meta: { requiresAuth: true }
       },
     ]
 })
