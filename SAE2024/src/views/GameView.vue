@@ -10,7 +10,7 @@
                 layer-type="base"
                 name="OpenStreetMap"
             ></l-tile-layer>
-            <l-marker :lat-lng="markerLatLng" @click="showMarkerInfo"></l-marker>
+            <l-marker v-if="clickedLocation" :lat-lng="clickedLocation" :icon="gameStatus === 'correct' ? 'successIcon' : 'errorIcon'"></l-marker>
             </l-map>
         </div>
         <div v-if="gameStatus === 'correct'">
