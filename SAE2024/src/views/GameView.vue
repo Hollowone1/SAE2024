@@ -5,13 +5,15 @@
         <img src="../assets/a2c7fc86c6b887959f61fd704ff9d8c2bbc1c34f774d3dc41654207db787be9d.webp">
         <div class="mapstyle">
             <l-map ref="map" v-model:zoom="zoom" :center="center" :max-zoom="maxZoom" :min-zoom="minZoom" :zoom-control="false" :useGlobalLeaflet="false" @click="updateMarker">
-            <l-tile-layer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                layer-type="base"
-                name="OpenStreetMap"
-            ></l-tile-layer>  
-            <l-marker v-if="clickedLocation" :lat-lng="clickedLocation" :icon="gameStatus === 'correct' ? 'successIcon' : 'errorIcon'"></l-marker>  
-          </l-map>
+              <l-tile-layer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  layer-type="base"
+                  name="OpenStreetMap">
+              </l-tile-layer>  
+              <l-marker v-if="clickedLocation" :lat-lng="clickedLocation" :icon="gameStatus === 'correct' ? 'successIcon' : 'errorIcon'"></l-marker>  
+              <l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="marker.latLng"></l-marker>
+          
+            </l-map>
         </div>
         <div v-if="gameStatus === 'correct'">
               <p>Vous avez trouvé</p>
@@ -42,7 +44,8 @@
       clickedLocation: null,
       gameStatus: 'waiting',
       maxZoom: 18,
-      minZoom: 1
+      minZoom: 1,
+      markers: []
       }
     },
     methods: {
@@ -69,6 +72,13 @@
         getRandomCoordinate(min, max) {
             return Math.random() * (max - min) + min;
         },
+        addMarker(latLng) {
+      this.markers.push({ latLng });
+    },
+    // Méthode pour réinitialiser les marqueurs
+    resetMarkers() {
+      this.markers = [];
+    },
     },
   };
   </script>
