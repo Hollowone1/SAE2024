@@ -14,20 +14,19 @@ export default {
     Register
   },
   methods: {
-    register(name, email, password) {
-      axios.post('http://localhost:2082/api/users/signup', {
-        name: name,
-        email: email,
-        password: password
-      })
-          .then(response => {
-            console.log(response.data)
-            useAuthStore().setToken(response.data.token)
-            this.$router.push('/accueil')
-          })
-          .catch(error => {
-            console.log(error)
-          })
+    async register(name, email, password) {
+      try {
+        const response = await axios.post('http://localhost:2082/api/users/signup', {
+          name: name,
+          email: email,
+          password: password
+        })
+        console.log(response.data)
+        useAuthStore().setToken(response.data.token)
+        this.$router.push('/accueil')
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
