@@ -47,7 +47,7 @@ p {
   border-radius: 10px; /* bord arrondis */
   border: 3px solid;
   border-color: #717394;
-  padding: 10rem 5rem;
+  padding: 5rem 10rem;
   width: 300px;
   text-align: initial;
   margin: auto;
