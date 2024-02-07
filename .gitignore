@@ -1,3 +1,4 @@
+.gitignore
 api.geoquizz/auth.geoquizz/composer.lock
 api.geoquizz/auth.geoquizz/vendor/autoload.php
 api.geoquizz/auth.geoquizz/vendor/bin/carbon
