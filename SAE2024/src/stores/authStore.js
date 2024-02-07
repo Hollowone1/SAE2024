@@ -7,10 +7,16 @@ export const useAuthStore = defineStore('auth', {
     errorMessage: null,
   }),
 
+  baseUrlSignUp: 'http://localhost:2082/api/users/signup',
+
+  baseUrlProfil: 'http://localhost:2082/api/users/profile',
+
   actions: {
     async authenticate({ username, password }) {
+        
       try {
-        const response = await fakeApi.authenticate(username, password);
+        const baseUrlSignIn =  'http://localhost:2082/api/users/signin' 
+        const response = await baseUrlSignIn.authenticate(username, password);
 
         if (response.success) {
           this.isAuthenticated = true;
@@ -37,22 +43,38 @@ export const useAuthStore = defineStore('auth', {
   },
 });
 
-export const fakeApi = {
-  async authenticate(username, password) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (username === 'example_user' && password === 'password123') {
-          resolve({
-            success: true,
-            user: { username: 'example_user', role: 'user' },
-          });
-        } else {
-          resolve({
-            success: false,
-            message: 'Nom d\'utilisateur ou mot de passe incorrect',
-          });
-        }
-      }, 1000);
-    });
-  },
-};
+export const useRegisterStore = defineStore('user', {
+    state: () => ({
+      username: '',
+      email: '',
+      password: '',
+    }),
+    actions: {
+      signup() {
+        const baseUrlSignUp = 'http://localhost:2082/api/users/signup';
+
+        const formData = {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+        };
+
+        fetch(baseUrlSignUp, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Erreur lors de la requête:', error);
+        });
+      },
+    },
+  });
+
+
