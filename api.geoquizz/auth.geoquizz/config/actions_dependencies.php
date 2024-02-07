@@ -6,10 +6,7 @@ use geoquizz\auth\api\domain\service\classes\JWTManager;
 use Psr\Container\ContainerInterface;
 
 return [
-    'jwtmanager.service' => function (ContainerInterface $c) {
-        return new JWTManager(getenv("JWT_SECRET"), getenv("JWT_LIFETIME"));
-    },
-    'auth.service' => function (ContainerInterface $c) {
+    'auth.service' => function () {
         return new AuthService();
     },
     'jwtauth.service' => function (ContainerInterface $c) {
