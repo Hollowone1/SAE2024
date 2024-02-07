@@ -113,4 +113,9 @@ class AuthService implements IAuth
     {
         // TODO
     }
+
+    public function updateUser(User $user)
+    {
+        return User::whereId($user->email)->update($user->toArray());
+    }
 }

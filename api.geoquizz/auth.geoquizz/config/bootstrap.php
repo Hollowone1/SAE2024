@@ -25,6 +25,7 @@ try {
     $c = $builder->build();
     $app = AppFactory::createFromContainer($c);
     $app->addRoutingMiddleware();
+    $app->addBodyParsingMiddleware();
     $app->addErrorMiddleware(true, false, false);
     return $app;
 } catch (Exception $e) {
