@@ -3,7 +3,7 @@
 ## Constitution du groupe:  
 - Bresson Jules
 - Rionde Antoine
-- Serrier Mattéo
+- Serrier Mathéo
 - Stoecklin Antoine
 - Tamourgh Elias
 
