@@ -10,11 +10,11 @@ class SeriesService {
     async getSeries() {
         const query = `
         query series {
-            series {
+            Series {
                 title
                 difficulty
                 description
-                coodinates
+                coordinates
                 maxzoom
             }
         }
@@ -40,7 +40,6 @@ class SeriesService {
             throw error;
         }
     }
-
 }
 
 export default SeriesService;
