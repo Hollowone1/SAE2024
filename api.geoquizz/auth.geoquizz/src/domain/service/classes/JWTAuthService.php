@@ -93,4 +93,38 @@ class JWTAuthService implements IJWTAuthService
         }
         return null;
     }
+
+    public function signOut($refreshToken): bool
+    {
+        $user = $this->authProvider->verifyRefreshToken($refreshToken);
+        if ($user) {
+            $user->refresh_token = null;
+            $user->refresh_token_expiration_date = null;
+            $user->save();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @throws UserException
+     */
+    public function updateProfile(User $user, string $newUsername = null, $newEmail = null, $newPassword = null): User
+    {
+        if ($newUsername) {
+            $user->username = $newUsername;
+        }
+        if ($newEmail) {
+            $user->email = $newEmail;
+        }
+        if ($newPassword) {
+            $user->password = password_hash($newPassword, PASSWORD_DEFAULT);
+        }
+        $updatedUser = $this->authProvider->updateUser($user);
+        if ($updatedUser) {
+            return $this->authProvider->getAuthenticatedUserProfile($updatedUser->email);
+        }
+        throw new UserException('Error during user profile update');
+    }
+
 }
