@@ -18,7 +18,7 @@ coverage
 /cypress/screenshots/
 
 # Editor directories and files
-.vscode/*
+SAE2024/.vscode/extensions.json
 !.vscode/extensions.json
 .idea
 *.suo
@@ -28,3 +28,8 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+api.geoquizz/geoquizz.components/data
+api.geoquizz/geoquizz.components/uploads
+api.geoquizz/auth.geoquizz/vendor
+parties.geoquizz/vendor
