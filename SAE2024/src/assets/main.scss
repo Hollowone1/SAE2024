@@ -54,19 +54,19 @@ background-color: #1F1E2E;
 @media screen and (max-width: 768px) {
   .game-container {
     flex-direction: column;
-    align-items: center; /* Center items horizontally */
+    align-items: center;
   }
 
   img {
-    width: 80%; /* Adjust width as needed */
-    max-width: 100%; /* Ensure image doesn't exceed container width */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 20px; /* Add some space between image and map */
+    width: 80%; 
+    max-width: 100%; 
+    height: auto; 
+    margin-bottom: 20px; 
   }
 
   .mapstyle {
-    width: 80%; /* Adjust width as needed */
-    max-width: 100%; /* Ensure map doesn't exceed container width */
+    width: 80%; 
+    max-width: 100%; 
   }
 }
 
