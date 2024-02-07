@@ -16,8 +16,6 @@ services:
 
   api.services.geoquizz:
     image: node:alpine
-    networks:
-      - geoquizz.net
     working_dir: /usr/app
     command: sh -c "npm i && npm run dev" #for development only
     #command: sh -c "npm i && npm start" #for production only
@@ -25,6 +23,8 @@ services:
       - ../services.geoquizz:/usr/app
     ports:
       - '3333:3000'
+    networks:
+      - geoquizz.net
     env_file:
       - services.env
     depends_on:
@@ -81,6 +81,8 @@ services:
     image: postgis/postgis:13-master
     # Required when running on platform other than amd64, like Apple M1/M2:
     # platform: linux/amd64
+    networks:
+      - geoquizz.net
     volumes:
       - ../series.geoquizz/data/database:/var/lib/postgresql/data
     environment:
@@ -90,11 +92,15 @@ services:
 
   cache:
     image: redis:6
+    networks:
+      - geoquizz.net
 
   directus:
     image: directus/directus:10.8.3
     ports:
       - 8055:8055
+    networks:
+      - geoquizz.net
     volumes:
       - ../series.geoquizz/uploads:/directus/uploads
       # If you want to load extensions from the host
@@ -119,5 +125,6 @@ services:
 
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "d1r3ctu5"
+
 
 
