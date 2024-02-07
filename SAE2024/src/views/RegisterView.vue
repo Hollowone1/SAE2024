@@ -6,27 +6,29 @@
 
 <script>
 import Register from "../components/Register.vue";
-import {useAuthStore} from '../stores/authStore.js'
-import axios from 'axios'
+import {useAuthStore} from '../stores/authStore.js';
 
 export default {
   components: {
     Register
   },
   methods: {
-    async register(name, email, password) {
-      try {
-        const response = await axios.post('http://localhost:2082/api/users/signup', {
-          name: name,
-          email: email,
-          password: password
-        })
-        console.log(response.data)
-        useAuthStore().setToken(response.data.token)
-        this.$router.push('/accueil')
-      } catch (error) {
-        console.log(error)
-      }
+    register(name, email, password) {
+      this.$api.post('/register', {
+        name: name,
+        email: email,
+        password: password
+      }).then(response => {
+        if (response.data.success) {
+          useAuthStore().setToken(response.data.token);
+          this.$router.push('/');
+          this.$toast.success('Inscription réussie');
+        } else {
+          this.$toast.error('Erreur d\'inscription');
+        }
+      }).catch(error => {
+        this.$toast.error('Une erreur est survenue lors de l\'inscription');
+      });
     }
   }
 }

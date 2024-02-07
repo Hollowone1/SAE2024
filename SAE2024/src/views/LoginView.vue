@@ -7,34 +7,36 @@
 <script>
 import Login from "../components/Login.vue";
 import {useAuthStore} from '../stores/authStore.js'
-import axios from 'axios'
 
 export default {
   components: {
     Login
   },
   methods: {
-    async login(email, password) {
-      try {
-        const response = await axios.post('http://localhost:2082/api/users/signin', {
-          email: email,
-          password: password
-        })
-        console.log(response.data)
-        useAuthStore().setToken(response.data.token)
-        this.$router.push('/accueil')
-      } catch (error) {
-        console.log(error)
-      }
+    login() {
+      const authStore = useAuthStore();
+      authStore.setToken(this.email, this.password);
+      console.log(authStore.token);
+      this.$api.get('/profil')
+          .then((res) => {
+            console.log(res.data);
+            this.$router.push('/');
+            this.$toast.success('Connexion réussie');
+            authStore.isAuthenticated = true;
+          })
+          .catch((error) => {
+            this.$toast.error('Identifiant invalide');
+            authStore.setToken(null);
+            console.log(error.response.data);
+          });
     }
   }
 }
+
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
-
-
 
 .nav-link {
   font-family: 'Protest Riot', sans-serif;
