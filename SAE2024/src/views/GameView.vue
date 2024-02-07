@@ -25,15 +25,15 @@
     },
     data() {
       return {
-      zoom: 12, // Augmenter le niveau de zoom pour que la ville de Nancy soit visible
+      zoom: 18, // Augmenter le niveau de zoom pour que la ville de Nancy soit visible
       center: [48.6921, 6.1844], // Coordonnées de la ville de Nancy
       clickedLocation: null,
       gameStatus: 'waiting',
       markerLatLng: [48.6921, 6.1844], // Initialiser avec les coordonnées de départ
-      maxZoom: 18,
+      maxZoom: 25,
       minZoom: 1,
       markers: [],
-      targetLocation: { lat: 40.7128, lon: -74.0060 },
+      targetLocation: { lat: 48.6921, lon: 6.1844 },
       userGuess: { lat: 0, lon: 0 },
       distanceParameter: 5, 
       }
@@ -51,23 +51,23 @@
           return dist;
         },
         checkDistance() {
-          const distance = this.calculateDistance(
-            this.targetLocation.lat,
-            this.targetLocation.lon,
-            this.userGuess.lat,
-            this.userGuess.lon
-          );
+    const distance = this.calculateDistance(
+        this.targetLocation.lat,
+        this.targetLocation.lon,
+        this.markerLatLng[0], // Latitude du marqueur
+        this.markerLatLng[1]  // Longitude du marqueur
+    );
 
-          if (distance < this.distanceParameter) {
-            console.log("5 points - Excellent guess!");
-          } else if (distance < 2 * this.distanceParameter) {
-            console.log("3 points - Good guess!");
-          } else if (distance < 3 * this.distanceParameter) {
-            console.log("1 point - Close enough!");
-          } else {
-            console.log("No points - Try again!");
-          }
-        },
+    if (distance < this.distanceParameter) {
+        console.log("5 points - Excellent guess!");
+    } else if (distance < 1000 * this.distanceParameter) {
+        console.log("3 points - Good guess!");
+    } else if (distance < 3000 * this.distanceParameter) {
+        console.log("1 point - Close enough!");
+    } else {
+        console.log("No points - Try again!");
+    }
+    },
         placeMarker(event) {
       this.markerLatLng = event.latlng;
     },
@@ -79,11 +79,14 @@
   </script>
   
   <style scoped>
+  
   .mapstyle{
     position: relative;
+    
   }
   map{
     position: absolute;
+    
   }
   </style>
 
