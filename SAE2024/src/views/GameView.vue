@@ -15,7 +15,7 @@
 
 <script>
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+import {LMap, LMarker, LTileLayer} from "@vue-leaflet/vue-leaflet";
 
 export default {
   components: {
@@ -44,8 +44,7 @@ export default {
         Math.cos(this.toRad(lat1)) * Math.cos(this.toRad(lat2)) *
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      const distance = R * c;
-      return distance;
+      return R * c;
     },
     toRad(degrees) {
       return degrees * Math.PI / 180;

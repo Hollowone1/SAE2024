@@ -6,7 +6,7 @@
 
 <script>
 import Register from "../components/Register.vue";
-import {useAuthStore} from '../stores/authStore.js';
+import {useRegisterStore} from '../stores/authStore.js';
 
 export default {
   components: {
@@ -20,7 +20,7 @@ export default {
         password: password
       }).then(response => {
         if (response.data.success) {
-          useAuthStore().setToken(response.data.token);
+          useRegisterStore().setToken(response.data.token);
           this.$router.push('/');
           this.$toast.success('Inscription réussie');
         } else {
