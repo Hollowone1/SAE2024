@@ -33,9 +33,9 @@
       maxZoom: 18,
       minZoom: 1,
       markers: [],
-      targetLocation: { lat: 40.7128, lon: -74.0060 }, // Example: New York City coordinates
+      targetLocation: { lat: 40.7128, lon: -74.0060 },
       userGuess: { lat: 0, lon: 0 },
-      distanceParameter: 500, 
+      distanceParameter: 5, 
       }
     },
     methods: {
@@ -57,9 +57,6 @@
             this.userGuess.lat,
             this.userGuess.lon
           );
-
-          console.log(distance)
-          console.log(this.distanceParameter)
 
           if (distance < this.distanceParameter) {
             console.log("5 points - Excellent guess!");
