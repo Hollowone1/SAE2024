@@ -21,7 +21,7 @@ router
 
 //récupère une série grâce à son id en paramètre -> création de la partie
 router
-    .route("/serie/:id")
+    .route("/series/:id")
     .get(seriesAction.getSerieByID.bind(seriesAction))
     .all((req, res, next) => next(405));
 
