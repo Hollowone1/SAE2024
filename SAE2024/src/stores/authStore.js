@@ -5,54 +5,82 @@ export const useAuthStore = defineStore('auth', {
     isAuthenticated: false,
     user: null,
     errorMessage: null,
+    token: null, 
   }),
 
-  actions: {
-    async authenticate({ username, password }) {
-      try {
-        const response = await fakeApi.authenticate(username, password);
+    actions: {
+      async authenticate(username, password) {
+        try {
+          const baseUrlSignIn = 'http://localhost:2082/api/users/signin';
+          const base64Credentials = btoa(`${username}:${password}`);
+          const response = await fetch(baseUrlSignIn, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization' : `Basic ${base64Credentials}`,
+            },
+          });
 
-        if (response.success) {
-          this.isAuthenticated = true;
-          this.user = response.user;
-          this.errorMessage = null;
-        } else {
+          const data = await response.json();
+  
+          if (data.success) {
+            this.isAuthenticated = true;
+            this.user = data.user;
+            const jwtToken = data.token;
+            this.token = jwtToken;
+            this.errorMessage = null;
+          } else {
+            this.isAuthenticated = false;
+            this.user = null;
+            this.errorMessage = data.message;
+          }
+        } catch (error) {
+          console.error('Erreur lors de l\'authentification', error);
           this.isAuthenticated = false;
           this.user = null;
-          this.errorMessage = response.message;
+          this.errorMessage = 'Une erreur s\'est produite lors de l\'authentification';
         }
-      } catch (error) {
-        console.error('Erreur lors de l\'authentification', error);
+      },
+  
+      logout() {
         this.isAuthenticated = false;
         this.user = null;
-        this.errorMessage = 'Une erreur s\'est produite lors de l\'authentification';
-      }
+        this.errorMessage = null;
+      },
     },
+  })
+  
 
-    logout() {
-      this.isAuthenticated = false;
-      this.user = null;
-      this.errorMessage = null;
+export const useRegisterStore = defineStore('user', {
+    state: () => ({
+      username: '',
+      email: '',
+      password: '',
+    }),
+    actions: {
+      signup() {
+        const baseUrlSignUp = 'http://localhost:2082/api/users/signup';
+
+        const formData = {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+        };
+
+        fetch(baseUrlSignUp, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Erreur lors de la requête:', error);
+        });
+      },
     },
-  },
-});
-
-export const fakeApi = {
-  async authenticate(username, password) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (username === 'example_user' && password === 'password123') {
-          resolve({
-            success: true,
-            user: { username: 'example_user', role: 'user' },
-          });
-        } else {
-          resolve({
-            success: false,
-            message: 'Nom d\'utilisateur ou mot de passe incorrect',
-          });
-        }
-      }, 1000);
-    });
-  },
-};
+  });

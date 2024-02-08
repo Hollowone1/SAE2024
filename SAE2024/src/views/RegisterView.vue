@@ -6,26 +6,23 @@
 
 <script>
 import Register from "../components/Register.vue";
-import {useAuthStore} from '../stores/authStore.js'
-import axios from 'axios'
+import {useRegisterStore} from '../stores/authStore.js';
 
 export default {
   components: {
     Register
   },
   methods: {
-    async register(name, email, password) {
-      try {
-        const response = await axios.post('http://localhost:2082/api/users/signup', {
-          name: name,
-          email: email,
-          password: password
-        })
-        console.log(response.data)
-        useAuthStore().setToken(response.data.token)
-        this.$router.push('/accueil')
-      } catch (error) {
-        console.log(error)
+    async register(name, email) {
+      const registerStore = useRegisterStore();
+      await registerStore.register(name, email);
+
+      if (registerStore.isRegistered) {
+        console.log(registerStore.isRegistered);
+        this.$router.push('/');
+        this.$toast.success('Inscription réussie');
+      } else {
+        this.$toast.error('Identifiant invalide');
       }
     }
   }

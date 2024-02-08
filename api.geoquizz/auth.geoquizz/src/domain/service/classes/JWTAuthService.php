@@ -27,12 +27,13 @@ class JWTAuthService implements IJWTAuthService
     /**
      * @throws CredentialsException
      * @throws RandomException
+     * @throws UserException
      */
     public function signIn($email, $password): ?array
     {
         $user = $this->authProvider->verifyCredentials($email, $password);
         if ($user) {
-            return $this->createTokenPair($user);
+            return ['user' => $this->authProvider->getAuthenticatedUserProfile($email), 'tokens' => $this->createTokenPair($user)];
         }
         return null;
     }
@@ -93,4 +94,39 @@ class JWTAuthService implements IJWTAuthService
         }
         return null;
     }
+
+    public function signOut($refreshToken): bool
+    {
+        $user = $this->authProvider->verifyRefreshToken($refreshToken);
+        if ($user) {
+            $user->refresh_token = null;
+            $user->refresh_token_expiration_date = null;
+            $user->save();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @throws UserException
+     */
+    public function updateProfile(string $newUsername = null, $newEmail = null, $newPassword = null): User
+    {
+        $user = $this->authProvider->getAuthenticatedUserProfile();
+        if ($newUsername) {
+            $user->username = $newUsername;
+        }
+        if ($newEmail) {
+            $user->email = $newEmail;
+        }
+        if ($newPassword) {
+            $user->password = password_hash($newPassword, PASSWORD_DEFAULT);
+        }
+        $updatedUser = $this->authProvider->updateUser($user);
+        if ($updatedUser) {
+            return $this->authProvider->getAuthenticatedUserProfile($updatedUser->email);
+        }
+        throw new UserException('Error during user profile update');
+    }
+
 }

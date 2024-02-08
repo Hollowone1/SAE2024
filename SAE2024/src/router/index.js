@@ -4,9 +4,10 @@ import LoginView from '@/views/LoginView.vue'
 import RegisterView from "@/views/RegisterView.vue"
 import GameView from "@/views/GameView.vue"
 import ProfilView from "@/views/ProfilView.vue"
+import {useAuthStore} from "@/stores/authStore.js";
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHistory(),
     routes: [
         {
             path: '/',
@@ -30,22 +31,21 @@ const router = createRouter({
             // meta: { requiresAuth: true }
         },
         {
-          path: '/profil',
-          name: 'profil',
-          component: ProfilView,
-        //   meta: { requiresAuth: true }
-      },
+            path: '/profil',
+            name: 'profil',
+            component: ProfilView,
+            // meta: { requiresAuth: true }
+        },
     ]
 })
 
 router.beforeEach((to, from, next) => {
-    const loggedIn = localStorage.getItem('user')
-
-    if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
-        next('/login')
-        return
+    const authStore = useAuthStore();
+    if (to.matched.some(record => record.meta.requiresAuth) && !authStore.isAuthenticated) {
+        next({ path: '/login' });
+    } else {
+        next();
     }
-    next()
 });
 
 export default router
