@@ -32,5 +32,7 @@ SAE2024/.vscode/extensions.json
 api.geoquizz/geoquizz.components/data
 api.geoquizz/geoquizz.components/uploads
 api.geoquizz/auth.geoquizz/vendor
-parties.geoquizz/vendor
+api.geoquizz/parties.geoquizz/vendor
+api.geoquizz/services.geoquizz/node_modules
+api.geoquizz/services.geoquizz/package-lock.json
 api.geoquizz/series.geoquizz
