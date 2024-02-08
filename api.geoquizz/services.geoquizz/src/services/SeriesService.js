@@ -40,6 +40,47 @@ class SeriesService {
             throw error;
         }
     }
+
+    async getSerieById(id){
+        const query = `
+        query Series_by_id {
+            Series_by_id(id: 1) {
+                Items {
+                    id
+                    image
+                    coordinates
+                    title
+                    description
+                }       
+                title
+                difficulty
+                coordinates
+                description
+                maxzoom
+            }
+        }
+    `;
+
+        try {
+            const response = await axios({
+                method: "post",
+                url: directusURL,
+                data: {
+                    query: query
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            console.log(response.data);
+
+            return response.data;
+        } catch (error) {
+            console.error("Erreur Axios :", error.response ? error.response.data : error.message);
+            throw error;
+        }
+    }
 }
 
 export default SeriesService;

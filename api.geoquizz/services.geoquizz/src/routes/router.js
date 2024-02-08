@@ -12,4 +12,9 @@ router
     .get(seriesAction.listerSeries.bind(seriesAction))
     .all((req, res, next) => next(405));
 
+router
+    .route("/serie/:id")
+    .get(seriesAction.getSerieByID.bind(seriesAction))
+    .all((req, res, next) => next(405));
+
 export default router;
