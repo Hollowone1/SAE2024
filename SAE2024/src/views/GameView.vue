@@ -14,26 +14,26 @@
 </template>
 
 <script>
-import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+      import "leaflet/dist/leaflet.css";
+      import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 
-export default {
-  components: {
-    LMap,
-    LTileLayer,
-    LMarker,
-  },
-  data() {
-    return {
-      zoom: 18,
-      center: [48.6921, 6.1844],
-      markerLatLng: [48.6921, 6.1844],
-      maxZoom: 25,
-      minZoom: 1,
-      targetLocation: { lat: 48.6921, lon: 6.1844 },
-      distanceParameter: 5,
-    };
-  },
+      export default {
+        components: {
+          LMap,
+          LTileLayer,
+          LMarker,
+        },
+        data() {
+          return {
+            zoom: 12,
+            center: [48.6921, 6.1844],
+            markerLatLng: [48.6921, 6.1844],
+            maxZoom: 25,
+            minZoom: 1,
+            targetLocation: { lat: 48.6921, lon: 6.1844 },
+            distanceParameter: 100,
+          };
+        },
   methods: {
     calculateDistance(lat1, lon1, lat2, lon2) {
       const R = 6371; // Rayon moyen de la Terre en kilomètres
@@ -58,15 +58,19 @@ export default {
         this.markerLatLng[1]  // Longitude du marqueur
       );
 
+      let points = 0;
+
       if (distance < this.distanceParameter) {
-        console.log("5 points - Excellent guess!");
-      } else if (distance < 2 * this.distanceParameter) { //TODO - calcul non fonctionnel
-        console.log("3 points - Good guess!");
-      } else if (distance < 5 * this.distanceParameter) { //TODO - calcul non fonctionnel
-        console.log("1 point - Close enough!");
+        points = 5;
+      } else if (distance < 2 * this.distanceParameter) { //TODO: cette condition intermediaire ne s'execute pas
+        points = 3;
+      } else if (distance < 3 * this.distanceParameter) { //TODO: cette condition intermediaire ne s'execute pas
+        points = 2;
       } else {
-        console.log("No points - Try again!");
+        points = 1;
       }
+
+      console.log(`Vous avez gagné ${points} points !`);
     },
     placeMarker(event) {
       this.markerLatLng = event.latlng;
@@ -79,10 +83,10 @@ export default {
 </script>
 
 <style scoped>
-.mapstyle{
-  position: relative;
-}
-map{
-  position: absolute;
-}
+  .mapstyle{
+    position: relative;
+  }
+  map{
+    position: absolute;
+  }
 </style>
