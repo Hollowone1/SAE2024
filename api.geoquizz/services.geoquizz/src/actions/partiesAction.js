@@ -22,7 +22,7 @@ export default class partiesAction {
 
         try {
             await this.#_service.updatePartyStatus(id, newStatus);
-            res.json({ message: 'Etat de la partie mis à jour avec succès.' });
+            res.json({ message: 'Status de la partie mis à jour avec succès.' });
             next();
         } catch (error) {
             console.log(error);
