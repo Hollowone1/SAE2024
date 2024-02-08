@@ -69,7 +69,8 @@ export const useRegisterStore = defineStore('user', {
         fetch(baseUrlSignUp, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization' : `Basic ${base64Credentials}`,
           },
           body: JSON.stringify(formData)
         })
