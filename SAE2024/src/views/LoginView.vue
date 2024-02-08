@@ -15,18 +15,16 @@ export default {
   methods: {
     login() {
       const authStore = useAuthStore();
-      authStore.setToken(this.email, this.password);
-      console.log(authStore.token);
+      authStore.authenticate(this.username, this.password);
+      console.log(authStore.isAuthenticated);
       this.$api.get('/profil')
           .then((res) => {
             console.log(res.data);
             this.$router.push('/');
             this.$toast.success('Connexion réussie');
-            authStore.isAuthenticated = true;
           })
           .catch((error) => {
             this.$toast.error('Identifiant invalide');
-            authStore.setToken(null);
             console.log(error.response.data);
           });
     }

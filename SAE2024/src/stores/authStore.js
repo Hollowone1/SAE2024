@@ -9,15 +9,16 @@ export const useAuthStore = defineStore('auth', {
   }),
 
     actions: {
-      async authenticate({ username, password }) {
+      async authenticate(username, password) {
         try {
           const baseUrlSignIn = 'http://localhost:2082/api/users/signin';
+          const base64Credentials = btoa(`${username}:${password}`);
           const response = await fetch(baseUrlSignIn, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization' : `Basic ${base64Credentials}`
             },
-            body: JSON.stringify({ username, password }),
           });
   
           const data = await response.json();
