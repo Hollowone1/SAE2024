@@ -1,4 +1,3 @@
-import axios from "axios";
 import knex from "knex";
 import knexConfig from '../configs/db.config.js'
 
@@ -10,6 +9,9 @@ class PartiesServices {
        await db('parties').update({token: token});
     }
 
+    async updatePartyStatus(partyId, nouvelEtat){
+        await db('parties').where('id', '=', partyId).update({status: nouvelEtat});
+    }
 }
 
 export default PartiesServices;

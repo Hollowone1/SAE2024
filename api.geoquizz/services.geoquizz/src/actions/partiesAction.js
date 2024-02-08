@@ -16,4 +16,19 @@ export default class partiesAction {
         }
     }
 
+    async updatePartyStatus(req, res, next){
+        const id = req.body.id;
+        const newStatus = req.body.status;
+
+        try {
+            await this.#_service.updatePartyStatus(id, newStatus);
+            res.json({ message: 'Etat de la partie mis à jour avec succès.' });
+            next();
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Internal Server Error' });
+            next(500);
+        }
+    }
+
 }
