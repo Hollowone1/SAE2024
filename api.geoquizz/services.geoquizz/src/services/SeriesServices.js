@@ -32,8 +32,6 @@ class SeriesServices {
                 }
             });
 
-            console.log(response.data);
-
             return response.data;
         } catch (error) {
             console.error("Erreur Axios :", error.response ? error.response.data : error.message);
@@ -72,8 +70,6 @@ class SeriesServices {
                     'Content-Type': 'application/json',
                 }
             });
-
-            console.log(response.data);
 
             return response.data;
         } catch (error) {
