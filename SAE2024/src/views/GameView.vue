@@ -89,8 +89,10 @@ export default {
 <style scoped>
 .mapstyle{
   position: relative;
+  
 }
 map{
   position: absolute;
+  
 }
 </style>
