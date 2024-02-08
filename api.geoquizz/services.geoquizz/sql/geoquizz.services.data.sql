@@ -11,6 +11,7 @@ CREATE TABLE `parties`
     `serie_id`   varchar(128) NOT NULL,
     `user_email` varchar(128) NOT NULL,
     `status`     varchar(25),
+    `token`      varchar(128),
     `score`      int(2)
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
