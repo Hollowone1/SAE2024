@@ -4,12 +4,12 @@
     <p>Pour commencer à jouer</p>
     <form @submit.prevent="submitForm">
       <label for="username">Identifiant</label>
-      <input v-model="username" type="username" id="username" name="username" placeholder="Identifiant">
+      <input v-model="username" type="email" id="username" name="username" placeholder="Identifiant">
       <br>
       <label for="password">Mot de passe</label>
       <input v-model="password" type="password" id="password" name="password" placeholder="Mot de passe">
       <br>
-      <router-link type="submit" to="/"><button class="connexion">Connexion</button></router-link>
+      <button class="connexion">Connexion</button>
       <p v-if="error">{{ error }}</p>
     </form>
   </div>

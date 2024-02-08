@@ -13,20 +13,17 @@ export default {
     Login
   },
   methods: {
-    login() {
+    async login(username, password) {
       const authStore = useAuthStore();
-      authStore.authenticate(this.username, this.password);
-      console.log(authStore.isAuthenticated);
-      this.$api.get('/profil')
-          .then((res) => {
-            console.log(res.data);
-            this.$router.push('/');
-            this.$toast.success('Connexion réussie');
-          })
-          .catch((error) => {
-            this.$toast.error('Identifiant invalide');
-            console.log(error.response.data);
-          });
+      await authStore.authenticate(username, password);
+
+      if (authStore.isAuthenticated) {
+        console.log(authStore.isAuthenticated);
+        this.$router.push('/');
+        this.$toast.success('Connexion réussie');
+      } else {
+        this.$toast.error('Identifiant invalide');
+      }
     }
   }
 }

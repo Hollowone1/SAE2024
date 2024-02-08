@@ -13,22 +13,17 @@ export default {
     Register
   },
   methods: {
-    register(name, email, password) {
-      this.$api.post('/register', {
-        name: name,
-        email: email,
-        password: password
-      }).then(response => {
-        if (response.data.success) {
-          useRegisterStore().setToken(response.data.token);
-          this.$router.push('/');
-          this.$toast.success('Inscription réussie');
-        } else {
-          this.$toast.error('Erreur d\'inscription');
-        }
-      }).catch(error => {
-        this.$toast.error('Une erreur est survenue lors de l\'inscription');
-      });
+    async register(name, email) {
+      const registerStore = useRegisterStore();
+      await registerStore.register(name, email);
+
+      if (registerStore.isRegistered) {
+        console.log(registerStore.isRegistered);
+        this.$router.push('/');
+        this.$toast.success('Inscription réussie');
+      } else {
+        this.$toast.error('Identifiant invalide');
+      }
     }
   }
 }
