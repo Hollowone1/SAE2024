@@ -3,13 +3,14 @@
     <h1>Connectez-vous</h1>
     <p>Pour commencer à jouer</p>
     <form @submit.prevent="submitForm">
-      <label for="email">Identifiant</label>
-      <input v-model="email" type="email" id="email" name="email" placeholder="Identifiant">
+      <label for="username">Identifiant</label>
+      <input v-model="username" type="username" id="username" name="username" placeholder="Identifiant">
       <br>
       <label for="password">Mot de passe</label>
       <input v-model="password" type="password" id="password" name="password" placeholder="Mot de passe">
       <br>
       <router-link type="submit" to="/"><button class="connexion">Connexion</button></router-link>
+      <p v-if="error">{{ error }}</p>
     </form>
   </div>
 </template>
@@ -19,13 +20,14 @@
 export default {
   data() {
     return {
-      email: '',
-      password: ''
+      username: '',
+      password: '',
+      error: ''
     }
   },
   methods: {
     submitForm() {
-      this.$emit('login', this.email, this.password);
+      this.$emit('login', this.username, this.password);
     }
   }
 }
@@ -46,9 +48,7 @@ p {
   background-color: #28293E; /* couleur de fond du reste du site */
   color: #ffffff; /* texte en blanc */
   border-radius: 10px; /* bord arrondis */
-  border: 3px solid;
-  padding: 20px;
-  border-color: hsl(237, 14%, 51%);
+  border: 3px solid hsl(237, 14%, 51%);
   padding: 5rem 10rem;
   width: 300px;
   text-align: initial;
