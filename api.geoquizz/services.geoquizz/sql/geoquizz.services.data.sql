@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS `parties`;
 
 CREATE TABLE `parties`
 (
-    `id`         varchar(128),
+    `id`         int(11) NOT NULL AUTO_INCREMENT,
     `serie_id`   varchar(128) NOT NULL,
     `user_email` varchar(128) NOT NULL,
     `status`     varchar(25),
