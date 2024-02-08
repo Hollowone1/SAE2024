@@ -13,9 +13,9 @@ export default {
     Login
   },
   methods: {
-    async login(username, password) {
+    async login(email, password) {
       const authStore = useAuthStore();
-      await authStore.authenticate(username, password);
+      await authStore.authenticate(email, password);
 
       if (authStore.isAuthenticated) {
         console.log(authStore.isAuthenticated);
