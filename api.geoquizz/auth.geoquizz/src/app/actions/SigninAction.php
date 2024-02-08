@@ -3,6 +3,7 @@
 namespace geoquizz\auth\api\app\actions;
 
 use geoquizz\auth\api\domain\exceptions\CredentialsException;
+use geoquizz\auth\api\domain\exceptions\UserException;
 use geoquizz\auth\api\domain\service\classes\JWTAuthService;
 use Psr\Container\ContainerInterface;
 
@@ -31,6 +32,9 @@ class SigninAction extends AbstractAction
                 return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
             } catch (CredentialsException) {
                 $response->getBody()->write(json_encode(['error' => 'Invalid credentials']));
+                return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
+            } catch (UserException $e) {
+                $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
             }
         }
