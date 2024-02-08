@@ -59,7 +59,7 @@ export const useRegisterStore = defineStore('user', {
     actions: {
       signup() {
         const baseUrlSignUp = 'http://localhost:2082/api/users/signup';
-
+        const base64Credentials = btoa(`${username}:${password}`);
         const formData = {
           username: this.username,
           email: this.email,
