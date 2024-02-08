@@ -27,12 +27,13 @@ class JWTAuthService implements IJWTAuthService
     /**
      * @throws CredentialsException
      * @throws RandomException
+     * @throws UserException
      */
     public function signIn($email, $password): ?array
     {
         $user = $this->authProvider->verifyCredentials($email, $password);
         if ($user) {
-            return $this->createTokenPair($user);
+            return ['user' => $this->authProvider->getAuthenticatedUserProfile($email), 'tokens' => $this->createTokenPair($user)];
         }
         return null;
     }
