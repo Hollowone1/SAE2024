@@ -6,7 +6,9 @@
       <div class="mapstyle">
         <l-map ref="map" v-model:zoom="zoom" :center="center" :max-zoom="maxZoom" :min-zoom="minZoom" :zoom-control="false" :useGlobalLeaflet="false" @click="placeMarker">
           <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"></l-tile-layer>
-          <l-marker :lat-lng="markerLatLng" :draggable="true" @dragend="onMarkerDragEnd" @click="checkDistance"></l-marker>
+          <l-marker :lat-lng="markerLatLng" :draggable="true" @dragend="onMarkerDragEnd" @click="checkDistance">
+            <l-popup :content="popupContent" />
+          </l-marker>
         </l-map>
       </div>
     </div>
@@ -14,26 +16,28 @@
 </template>
 
 <script>
-      import "leaflet/dist/leaflet.css";
-      import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
 
-      export default {
-        components: {
-          LMap,
-          LTileLayer,
-          LMarker,
-        },
-        data() {
-          return {
-            zoom: 12,
-            center: [48.6921, 6.1844],
-            markerLatLng: [48.6921, 6.1844],
-            maxZoom: 25,
-            minZoom: 1,
-            targetLocation: { lat: 48.6921, lon: 6.1844 },
-            distanceParameter: 100,
-          };
-        },
+export default {
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker,
+    LPopup,
+  },
+  data() {
+    return {
+      zoom: 12,
+      center: [48.6921, 6.1844],
+      markerLatLng: [48.6921, 6.1844],
+      maxZoom: 25,
+      minZoom: 1,
+      targetLocation: { lat: 48.6921, lon: 6.1844 },
+      distanceParameter: 100,
+      popupContent: "",
+    };
+  },
   methods: {
     calculateDistance(lat1, lon1, lat2, lon2) {
       const R = 6371; // Rayon moyen de la Terre en kilomètres
@@ -62,15 +66,15 @@
 
       if (distance < this.distanceParameter) {
         points = 5;
-      } else if (distance < 2 * this.distanceParameter) { //TODO: cette condition intermediaire ne s'execute pas
+      } else if (distance < 2 * this.distanceParameter) {
         points = 3;
-      } else if (distance < 3 * this.distanceParameter) { //TODO: cette condition intermediaire ne s'execute pas
+      } else if (distance < 3 * this.distanceParameter) {
         points = 2;
       } else {
-        points = 1;
+        points = 0;
       }
 
-      console.log(`Vous avez gagné ${points} points !`);
+      this.popupContent = `Vous avez gagné ${points} points !`;
     },
     placeMarker(event) {
       this.markerLatLng = event.latlng;
@@ -83,10 +87,10 @@
 </script>
 
 <style scoped>
-  .mapstyle{
-    position: relative;
-  }
-  map{
-    position: absolute;
-  }
+.mapstyle{
+  position: relative;
+}
+map{
+  position: absolute;
+}
 </style>
