@@ -17,10 +17,10 @@ export const useAuthStore = defineStore('auth', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization' : `Basic ${base64Credentials}`
+              'Authorization' : `Basic ${base64Credentials}`,
             },
           });
-  
+
           const data = await response.json();
   
           if (data.success) {
@@ -46,8 +46,6 @@ export const useAuthStore = defineStore('auth', {
         this.isAuthenticated = false;
         this.user = null;
         this.errorMessage = null;
-  
-      
       },
     },
   })
@@ -86,5 +84,3 @@ export const useRegisterStore = defineStore('user', {
       },
     },
   });
-
-
