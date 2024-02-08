@@ -1,17 +1,17 @@
 import express from 'express';
-import SeriesService from "../services/SeriesService.js";
+import SeriesServices from "../services/SeriesServices.js";
 import SeriesAction from "../actions/seriesAction.js";
 
-import PartyService from "../services/PartyService.js";
-import PartyAction from "../actions/PartyAction.js";
+import PartiesServices from "../services/PartiesServices.js";
+import PartiesAction from "../actions/PartiesAction.js";
 
 const router = express.Router();
 
-const seriesService = new SeriesService();
+const seriesService = new SeriesServices();
 const seriesAction = new SeriesAction(seriesService);
 
-const partyService = new PartyService();
-const partyAction = new PartyAction(partyService);
+const partyServices = new PartiesServices();
+const partyAction = new PartiesAction(partyServices);
 
 //récupère la liste des série disponible -> choix de la série à la creation de la partie
 router

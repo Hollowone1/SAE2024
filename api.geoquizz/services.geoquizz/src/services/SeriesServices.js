@@ -6,7 +6,7 @@ const db = knex(knexConfig);
 
 const directusURL = 'http://directus:8055/graphql';
 
-class SeriesService {
+class SeriesServices {
     async getSeries() {
         const query = `
         query series {
@@ -83,4 +83,4 @@ class SeriesService {
     }
 }
 
-export default SeriesService;
+export default SeriesServices;
