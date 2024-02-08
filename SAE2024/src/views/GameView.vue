@@ -11,9 +11,30 @@
           </l-marker>
         </l-map>
       </div>
+
+    </div>
+    <div class="score-container">
+      
+      <table class="points-table">
+        <thead>
+          <tr>
+            <th>Essais</th>
+            <th>Score</th>
+            <th>Meilleure Distance</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ index + 1 }}</td>
+            <td>{{score}}</td>
+            <td>{{ bestDistance }} km</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-</template>
+  </template>
 
 <script>
 import "leaflet/dist/leaflet.css";
@@ -83,6 +104,6 @@ export default {
 }
 map{
   position: absolute;
-  
 }
+
 </style>
