@@ -2,6 +2,7 @@
 
 <div class="page-container">
   <h2> Votre profil</h2>
+  <h3>{{ username }}</h3>
   <table>
     <thead>
       <tr>
@@ -29,13 +30,19 @@
 
 </div>
 
-
- 
-
 <routerLink to="/" type="submit">Se déconnecter</routerLink>
 </template>
 
 <script>
+import { useAuthStore } from '@/stores/authStore';
+
+export default{
+  data:{
+  isLogged: true,
+  username: useAuthStore().username
+  }
+}
+
 
 </script>
 
