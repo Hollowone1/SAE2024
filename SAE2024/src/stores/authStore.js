@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia';
+import {defineStore} from 'pinia';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -23,11 +23,10 @@ export const useAuthStore = defineStore('auth', {
 
           const data = await response.json();
   
-          if (data.success) {
+          if (data) {
             this.isAuthenticated = true;
             this.user = data.user;
-            const jwtToken = data.token;
-            this.token = jwtToken;
+            this.token = data.token;
             this.errorMessage = null;
           } else {
             this.isAuthenticated = false;

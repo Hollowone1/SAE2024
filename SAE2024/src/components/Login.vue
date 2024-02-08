@@ -3,13 +3,13 @@
     <h1>Connectez-vous</h1>
     <p>Pour commencer à jouer</p>
     <form @submit.prevent="submitForm">
-      <label for="username">Identifiant</label>
-      <input v-model="username" type="email" id="username" name="username" placeholder="Identifiant">
+      <label for="email">Identifiant</label>
+      <input v-model="email" type="email" id="email" name="email" placeholder="Identifiant">
       <br>
       <label for="password">Mot de passe</label>
       <input v-model="password" type="password" id="password" name="password" placeholder="Mot de passe">
       <br>
-      <button class="connexion">Connexion</button>
+      <button type="submit" class="connexion">Connexion</button>
       <p v-if="error">{{ error }}</p>
     </form>
   </div>
@@ -20,14 +20,14 @@
 export default {
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
       error: ''
     }
   },
   methods: {
     submitForm() {
-      this.$emit('login', this.username, this.password);
+      this.$emit('login', this.email, this.password);
     }
   }
 }

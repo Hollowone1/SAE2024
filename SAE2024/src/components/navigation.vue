@@ -2,10 +2,12 @@
   <nav>
     <routerLink to="/nouvelle-partie">Nouvelle Partie</routerLink>
     <routerLink to="/"><h1>Géo-Quizz</h1></routerLink>
-    <routerLink v-if="isLoggedIn" to="../views/Profil.view">Mon profil</routerLink>
+    <div v-if="isLoggedIn">
+      <routerLink :to="{ name: 'profil' }">Mon profil</routerLink>
+    </div>
     <div v-else>
-      <routerLink to="/register">Inscription</routerLink>
-      <routerLink to="/login">Connexion</routerLink>
+      <routerLink :to="{ name: 'register' }">Inscription</routerLink>
+      <routerLink :to="{ name: 'login' }">Connexion</routerLink>
     </div>
   </nav>
 </template>
@@ -16,8 +18,11 @@ import {useAuthStore} from "@/stores/authStore.js";
 export default {
   data() {
     return {
-      isLoggedIn: useAuthStore().isAuthenticated
-    };
+      isLoggedIn: false
+    }
   },
+  mounted() {
+    this.isLoggedIn = useAuthStore().isAuthenticated;
+  }
 }
 </script>
