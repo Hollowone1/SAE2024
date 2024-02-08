@@ -20,10 +20,18 @@ try {
 $builder = new ContainerBuilder();
 $builder->addDefinitions($settings);
 $builder->addDefinitions($actions);
+
 $builder->addDefinitions($services);
 try {
     $c = $builder->build();
     $app = AppFactory::createFromContainer($c);
+    $app->add(function ($request, $handler) {
+        $response = $handler->handle($request);
+        return $response
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    });
     $app->addRoutingMiddleware();
     $app->addBodyParsingMiddleware();
     $app->addErrorMiddleware(true, false, false);
