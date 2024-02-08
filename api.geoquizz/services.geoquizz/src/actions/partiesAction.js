@@ -31,4 +31,15 @@ export default class partiesAction {
         }
     }
 
+    async createParty(req, res, next) {
+        try {
+            const partie = await this.#_service.createParty(req.body);
+            res.json(partie);
+            next();
+        } catch (error) {
+            console.error(error);
+            next(500);
+        }
+    }
+
 }
