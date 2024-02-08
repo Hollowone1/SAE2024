@@ -1,8 +1,8 @@
 <template>
 
-<h2> Votre profil</h2>
-
- <table>
+<div class="page-container">
+  <h2> Votre profil</h2>
+  <table>
     <thead>
       <tr>
         <th>Partie</th>
@@ -26,6 +26,11 @@
       </tr>
     </tbody>
  </table>
+
+</div>
+
+
+ 
 
 <routerLink to="/" type="submit">Se déconnecter</routerLink>
 </template>
