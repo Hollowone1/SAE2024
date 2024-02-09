@@ -40,7 +40,7 @@ class SeriesServices {
     async getSerieById(id){
         const query = `
         query Series_by_id {
-            Series_by_id(id: 1) {
+            Series_by_id(id: ${id}) {
                 Items {
                     id
                     image
