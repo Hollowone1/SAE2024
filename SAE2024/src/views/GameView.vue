@@ -124,9 +124,24 @@ export default {
       this.gameOver = false;
       this.markerLatLng = [this.center[0], this.center[1]];
     },
+    async createParty() { 
+      const party = { 
+          serie_id: this.series[0].id,
+          user_email: localStorage.getItem("userEmail"), 
+          item_id: this.item.id, 
+      }; 
+      const response = await fetch("http://localhost:3333/api/party",
+      { 
+      headers: { "Content-Type": "application/json", },
+      body: JSON.stringify(party), 
+      }); 
+      const data = await response.json(); 
+      localStorage.setItem("party", JSON.stringify(data.item)); 
+      },
     },
-  };
+};
 </script>
+
 
 
 <style scoped>
