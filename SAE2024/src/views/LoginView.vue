@@ -7,7 +7,6 @@
 <script>
 import Login from "../components/Login.vue";
 import {useAuthStore} from '../stores/authStore.js'
-import localStorage from '@/plugins/localStorage.js'
 
 export default {
   components: {
@@ -21,7 +20,6 @@ export default {
       if (authStore.isAuthenticated) {;
         this.$router.push('/');
         this.$toast.success('Connexion réussie');
-        localStorage.saveGameData()
       } else {
         this.$toast.error('Identifiant invalide');
       }

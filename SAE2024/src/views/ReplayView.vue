@@ -32,10 +32,14 @@
     <routerLink to="/" type="submit">Se déconnecter</routerLink>
     </template>
     
-    <script setup>
-    import localStorage from '@/plugins/localStorage';
-
-    let username =  localStorage.sav()
+    <script >
+     export default {
+      computed: {
+       username() {
+       return localStorage.getItem("username");
+       },
+  },
+};
      
     </script>
     
