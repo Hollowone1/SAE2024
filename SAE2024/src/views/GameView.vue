@@ -68,8 +68,8 @@ export default {
       popupContent: "",
       score: 0,
       bestDistance: 100,
-      totalAttempts: 4,
-      remainingAttempts: 4,
+      totalAttempts: 2,
+      remainingAttempts: 2,
       gameOver: false,
     };
   },
