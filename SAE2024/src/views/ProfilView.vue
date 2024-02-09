@@ -33,16 +33,10 @@
 <routerLink to="/" type="submit">Se déconnecter</routerLink>
 </template>
 
-<script>
+<script setup>
 import { useAuthStore } from '@/stores/authStore';
 
-export default{
-  data:{
-  isLogged: true,
-  username: useAuthStore().username
-  }
-}
-
+let username =  useAuthStore().username
 
 </script>
 
