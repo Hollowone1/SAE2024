@@ -1,36 +1,31 @@
-import { getData } from "@/stores/authStore";
+const saveStorage = (key, data) => {
+  localStorage.setItem(key, JSON.stringify(data));
+};
 
+const getStorage = (key, item) => {
+  const content = localStorage.getItem(key);
+  if (content) {
+    if (item) {
+      const parsed = JSON.parse(content);
+      return parsed[item];
+    }
+    return JSON.parse(content);
+  }
+  return null;
+};
+
+const clearStorage = key => {
+  if (key) {
+    localStorage.removeItem(key);
+  } else {
+    localStorage.clear();
+  }
+};
 
 export default {
-  saveGameData() {
-    try {
-      const data = getData().data.Series_by_id;
-
-      
-      if (data && typeof data === 'object') {
-        window.localStorage.setItem('data', JSON.stringify(data));
-      } else {
-        console.error("Trying to save undefined or non-object data");
-      }
-    } catch (error) {
-      console.error("Error while saving game data:", error);
-    }
-  },
-
-  
-  getGameData() {
-    try {
-      const data = getData().data;
-
-      if (data && typeof data === 'object') {
-        const storedGameData = window.localStorage.getItem('data');
-        return storedGameData ? JSON.parse(storedGameData) : null;
-      } else {
-        console.error("Data is not an object or is undefined");
-      }
-    } catch (error) {
-      console.error("Error while getting game data:", error);
-      return null;
-    }
+  install(Vue) {
+    Vue.prototype.$saveStorage = saveStorage;
+    Vue.prototype.$getStorage = getStorage;
+    Vue.prototype.$clearStorage = clearStorage;
   },
 };

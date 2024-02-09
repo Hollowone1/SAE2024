@@ -33,11 +33,26 @@
 <routerLink to="/" type="submit">Se déconnecter</routerLink>
 </template>
 
-<script setup>
+<script >
 
-import localStorage from '@/plugins/localStorage';
+export default {
+  methods: {
+    saveData() {
+      const dataToSave = {
+        mainKey: 'username',
 
-let username =  localStorage.getGameData()
+      };
+      this.$saveStorage('exampleKey', dataToSave);
+    },
+    async getData() {
+      const data = await this.$getStorage('exampleKey');
+      console.log(data);
+    },
+    clearData() {
+      this.$clearStorage('exampleKey');
+    },
+  },
+};
 
 </script>
 
