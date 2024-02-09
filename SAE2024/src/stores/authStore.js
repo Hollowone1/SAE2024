@@ -84,3 +84,14 @@ export const useRegisterStore = defineStore('user', {
       },
     },
   });
+  export function getData(){
+    const baseUrlSignIn = 'http://localhost:2082/api/users/signin';
+    const base64Credentials = btoa(`${username}:${password}`);
+    fetch(baseUrlSignIn, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Basic ${base64Credentials}`,
+      }
+  })
+}
