@@ -7,6 +7,8 @@
 <script>
 import Register from "../components/Register.vue";
 import {useRegisterStore} from '../stores/authStore.js';
+import localStorage from '@/plugins/localStorage.js'
+
 
 export default {
   components: {
@@ -18,9 +20,9 @@ export default {
       await registerStore.register(name, email);
 
       if (registerStore.isRegistered) {
-        console.log(registerStore.isRegistered);
         this.$router.push('/');
         this.$toast.success('Inscription réussie');
+        localStorage.saveGameData()
       } else {
         this.$toast.error('Identifiant invalide');
       }

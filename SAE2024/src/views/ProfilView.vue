@@ -34,9 +34,10 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '@/stores/authStore';
 
-let username =  useAuthStore().username
+import localStorage from '@/plugins/localStorage';
+
+let username =  localStorage.getGameData()
 
 </script>
 
