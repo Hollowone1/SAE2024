@@ -2,11 +2,9 @@ import axios from "axios";
 import knex from "knex";
 import knexConfig from '../configs/db.config.js'
 
-const db = knex(knexConfig);
-
 const directusURL = 'http://directus:8055/graphql';
 
-class SeriesService {
+class SeriesServices {
     async getSeries() {
         const query = `
         query series {
@@ -32,8 +30,6 @@ class SeriesService {
                 }
             });
 
-            console.log(response.data);
-
             return response.data;
         } catch (error) {
             console.error("Erreur Axios :", error.response ? error.response.data : error.message);
@@ -44,7 +40,7 @@ class SeriesService {
     async getSerieById(id){
         const query = `
         query Series_by_id {
-            Series_by_id(id: 1) {
+            Series_by_id(id: ${id}) {
                 Items {
                     id
                     image
@@ -73,8 +69,6 @@ class SeriesService {
                 }
             });
 
-            console.log(response.data);
-
             return response.data;
         } catch (error) {
             console.error("Erreur Axios :", error.response ? error.response.data : error.message);
@@ -83,4 +77,4 @@ class SeriesService {
     }
 }
 
-export default SeriesService;
+export default SeriesServices;
