@@ -20,6 +20,8 @@ class ModifyProfileAction extends AbstractAction
 
     public function __invoke(Request $request, Response $response, array $args)
     {
+        // TODO : later, dont' enable to get parsed body with a patch request
+
         $h = $request->getHeader('Authorization')[0];
         $tokenstring = sscanf($h, "Basic %s")[0];
         $tokenstring = base64_decode($tokenstring);
@@ -31,12 +33,16 @@ class ModifyProfileAction extends AbstractAction
             return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
         }
 
-        $data = $request->getParsedBody();
-        $username = $data['username'];
-        $email = $data['email'];
-        $password = $data['password'];
+        $parsedBody = $request->getParsedBody();
 
-        if (array_key_exists('username', $data) && array_key_exists('email', $data) && array_key_exists('password', $data)) {
+        if (!empty($parsedBody)) {
+            return $parsedBody;
+        }
+        $username = $parsedBody['username'];
+        $email = $parsedBody['email'];
+        $password = $parsedBody['password'];
+
+        if (isset($username) && isset($email) && isset($password)) {
             {
                 try {
                     $response->getBody()->write(json_encode($this->JWTAuthService->updateProfile($username, $email, $password)));
@@ -49,8 +55,8 @@ class ModifyProfileAction extends AbstractAction
                     return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
                 }
             }
-            $response->getBody()->write(json_encode(['error' => 'Invalid credentials']));
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
         }
+        $response->getBody()->write(json_encode(['error' => 'Invalid credentials']));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
     }
 }
