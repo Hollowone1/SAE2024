@@ -9,7 +9,7 @@ services:
     command: '--default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci'
     env_file: services.env
     ports:
-      - '3311:3340' ## 40509
+      - '3311:3306' ## 40509
     networks:
       - geoquizz.net
     volumes:
@@ -127,3 +127,14 @@ services:
 
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "d1r3ctu5"
+
+  ws:
+    image: node:alpine
+    command: sh -c "npm i && npm run dev"
+    working_dir: /usr/app
+    volumes:
+      - ../websocket.geoquizz:/usr/app
+    ports:
+      - '3080:3000'
+    networks:
+      - geoquizz.net

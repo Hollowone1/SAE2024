@@ -1,0 +1,22 @@
+{
+  "name": "websocket.geoquizz",
+  "version": "1.0.0",
+  "description": "Node.js - WebSocket",
+  "main": "app.js",
+  "type": "module",
+  "keywords": [],
+  "author": "SERRIER Mathéo",
+  "license": "ISC",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "dev:windows": "nodemon --legacy-watch server.js",
+    "watch": "node --watch server.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

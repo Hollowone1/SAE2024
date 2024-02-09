@@ -20,17 +20,6 @@ export default class partiesAction {
         }
     }
 
-    async getParty(req, res, next) {
-        try {
-            const id = req.body.id;
-            const partie = await this.#_service.getParty(id);
-            res.json(partie);
-        } catch (error) {
-            console.error(error);
-            next(500);
-        }
-    }
-
     async createParty(req, res, next) {
         const user_email = req.body.user_email;
         const serie_id = req.body.serie_id;

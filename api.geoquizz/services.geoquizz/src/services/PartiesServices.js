@@ -2,6 +2,8 @@ import knex from "knex";
 import knexConfig from '../configs/db.config.js'
 import SeriesServices from "../services/SeriesServices.js";
 import SeriesAction from "../actions/seriesAction.js";
+import { notifyGameCreation } from '../../../websocket.geoquizz/services/notifyService.js';
+
 
 const db = knex(knexConfig);
 
@@ -53,6 +55,8 @@ class PartiesServices {
 
         const createdPartie = await db('parties').where('id', insertedPartie[0]).first();
         createdPartie.items = randomItems;
+
+        notifyGameCreation(createdPartie);
 
         return createdPartie;
     }
