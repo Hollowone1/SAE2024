@@ -35,7 +35,7 @@
     <script setup>
     import localStorage from '@/plugins/localStorage';
 
-    let username =  localStorage.getGameData()
+    let username =  localStorage.sav()
      
     </script>
     
