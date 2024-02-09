@@ -61,7 +61,7 @@ export default {
       markerLatLng: [48.6921, 6.1844],
       maxZoom: 25,
       minZoom: 1,
-      targetLocation: { lat: 48.6921, lon: 6.1844 },
+      targetLocation: { lat: 48.6921, lon: 6.1844 }, //generer la target location
       distanceParameter: 0.1,
       popupContent: "",
       score: 0,
