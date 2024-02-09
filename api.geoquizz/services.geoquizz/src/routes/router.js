@@ -19,12 +19,6 @@ router
     .get(seriesAction.listerSeries.bind(seriesAction))
     .all((req, res, next) => next(405));
 
-//récupère une série grâce à son id en paramètre -> création de la partie
-router
-    .route("/series/:id")
-    .get(seriesAction.getSerieByID.bind(seriesAction))
-    .all((req, res, next) => next(405));
-
 //post pour créer la partie -> penser à fournir la série nécéssaire pour la création
 //réponse du post contient les data de la partie(token + liste de 10 items)
 //patch pour changer le statue de la partie ->CREATED ->IN PROGRESS ->FINISHED + SCORE à mettre à jour

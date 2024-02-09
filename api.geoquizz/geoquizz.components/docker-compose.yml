@@ -7,14 +7,14 @@ services:
   geoquizz.services.db:
     image: 'mariadb:latest'
     command: '--default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci'
-    env_file: ./api.geoquizz/geoquizz.components/services.env
+    env_file: services.env
     ports:
       - '3311:3340' ## 40509
     networks:
       - geoquizz.net
     volumes:
-      - ./api.geoquizz/services.geoquizz/sql:/var/sql
-      - ./api.geoquizz/services.geoquizz/sql:/docker-entrypoint-initdb.d
+      - ../services.geoquizz/sql:/var/sql
+      - ../services.geoquizz/sql:/docker-entrypoint-initdb.d
 
   api.services.geoquizz:
     image: node:alpine
@@ -22,13 +22,13 @@ services:
     command: sh -c "npm i && npm run dev" #for development only
     #command: sh -c "npm i && npm start" #for production only
     volumes:
-      - ./api.geoquizz/services.geoquizz:/usr/app
+      - ../services.geoquizz:/usr/app
     ports:
       - '3333:3333'
     networks:
       - geoquizz.net
     env_file:
-      - ./api.geoquizz/geoquizz.components/services.env
+      - services.env
     depends_on:
       - geoquizz.services.db
 
@@ -50,13 +50,13 @@ services:
   ######################################
   api.geoquizz-auth:
     image: 'canals/php:8.2'
-    env_file: ./api.geoquizz/geoquizz.components/auth.env
+    env_file: auth.env
     ports:
       - '2082:80' ## 40506
       - '1444:443' ## 40507
     volumes:
-      - ./api.geoquizz/auth.geoquizz/public:/var/www/html
-      - ./api.geoquizz/auth.geoquizz:/var/www
+      - ../auth.geoquizz/public:/var/www/html
+      - ../auth.geoquizz:/var/www
     working_dir: /var/www
     networks:
       geoquizz.net:
@@ -70,14 +70,14 @@ services:
   geoquizz.auth.db:
     image: 'mariadb:latest'
     command: '--default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci'
-    env_file: ./api.geoquizz/geoquizz.components/auth.env
+    env_file: auth.env
     ports:
       - '3309:3306' ## 40508
     networks:
       - geoquizz.net
     volumes:
-      - ./api.geoquizz/auth.geoquizz/sql:/var/sql
-      - ./api.geoquizz/auth.geoquizz/sql:/docker-entrypoint-initdb.d
+      - ../auth.geoquizz/sql:/var/sql
+      - ../auth.geoquizz/sql:/docker-entrypoint-initdb.d
 
   geoquizz.serie.db:
     image: postgis/postgis:13-master
@@ -86,7 +86,7 @@ services:
     networks:
       - geoquizz.net
     volumes:
-      - ./api.geoquizz/series.geoquizz/data/database:/var/lib/postgresql/data
+      - ../series.geoquizz/data/database:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "directus"
       POSTGRES_PASSWORD: "directus"
@@ -102,7 +102,7 @@ services:
     ports:
       - '8055:8055'
     volumes:
-      - ./api.geoquizz/series.geoquizz/uploads:/directus/uploads
+      - ../series.geoquizz/uploads:/directus/uploads
       # If you want to load extensions from the host
       # - ./extensions:/directus/extensions
     depends_on:
@@ -127,20 +127,3 @@ services:
 
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "d1r3ctu5"
-
-  geoquizz.client:
-    build:
-      context: ./SAE2024
-      dockerfile: Dockerfile
-    volumes:
-      - ./SAE2024/:/app
-      - /app/node_modules
-    ports:
-      - "3030:3000"
-    working_dir: /app
-    networks:
-      - geoquizz.net
-    depends_on:
-      - api.geoquizz-auth
-      - api.services.geoquizz
-      - directus
