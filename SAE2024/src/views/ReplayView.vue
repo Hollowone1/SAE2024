@@ -32,15 +32,11 @@
     <routerLink to="/" type="submit">Se déconnecter</routerLink>
     </template>
     
-    <script>
-    import { useAuthStore } from '@/stores/authStore';
+    <script setup>
+    import localStorage from '@/plugins/localStorage';
 
-    export default{
-     data:{
-     isLogged: true,
-     username: useAuthStore().username
-        }
-    }
+    let username =  localStorage.sav()
+     
     </script>
     
     <style>

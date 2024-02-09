@@ -14,14 +14,4 @@ export default defineConfig({
     }
   }
 })
-module.exports = {
-  devServer: {
-    proxy: {
-      '^/users': {
-        target: 'http://localhost:2082/',
-        ws: true,
-        changeOrigin: true
-      },
-    }
-  }
-}
+

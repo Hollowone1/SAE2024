@@ -33,16 +33,26 @@
 <routerLink to="/" type="submit">Se déconnecter</routerLink>
 </template>
 
-<script>
-import { useAuthStore } from '@/stores/authStore';
+<script >
 
-export default{
-  data:{
-  isLogged: true,
-  username: useAuthStore().username
-  }
-}
+export default {
+  methods: {
+    saveData() {
+      const dataToSave = {
+        mainKey: 'username',
 
+      };
+      this.$saveStorage('exampleKey', dataToSave);
+    },
+    async getData() {
+      const data = await this.$getStorage('exampleKey');
+      console.log(data);
+    },
+    clearData() {
+      this.$clearStorage('exampleKey');
+    },
+  },
+};
 
 </script>
 

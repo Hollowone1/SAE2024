@@ -6,11 +6,10 @@ import toast from './plugins/toast'
 import 'vue3-toastify/dist/index.css'
 
 const app = createApp(App)
-
+app.use(router)
 app.use(createPinia())
-
 app.use(toast)
 
-app.use(router)
+
 
 app.mount('#app')

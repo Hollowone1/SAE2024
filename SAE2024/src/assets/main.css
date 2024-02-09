@@ -44,4 +44,21 @@ img {
   height: auto;
   width: 50%;
   border: 2px solid grey;
+}
+
+.rejouer {
+  background-color: #42B480;
+  color: #ffffff;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  font-family: "Protest Riot", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  color: #ffffff;
 }/*# sourceMappingURL=main.css.map */
