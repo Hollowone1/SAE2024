@@ -1,35 +1,41 @@
 import knex from "knex";
 import knexConfig from '../configs/db.config.js'
-
-const db = knex(knexConfig);
-
 import SeriesServices from "../services/SeriesServices.js";
 import SeriesAction from "../actions/seriesAction.js";
 
-const seriesService = new SeriesServices();
-const seriesAction = new SeriesAction(seriesService);
+const db = knex(knexConfig);
 
 class PartiesServices {
-    async updatePartyStatus(partyId, nouvelEtat){
-        await db('parties').where('id', '=', partyId).update({status: nouvelEtat});
+    async updatePartyStatus(partyId, nouvelEtat, score){
+        await db('parties').where('id', '=', partyId).update({status: nouvelEtat, score: score});
+    }
+
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
 
     async getRandomItems(serie_id){
-        console.log(serie_id);
+        const seriesActionInstance = new SeriesAction(new SeriesServices());
+
         try {
-            const serieData = await seriesAction.getSerieByID(serie_id);
+            const serieData = await seriesActionInstance.getSerieByID(serie_id);
+
+            const itemsArray = serieData.data.Series_by_id.Items;
+
+            const shuffledArray = this.shuffleArray([...itemsArray]);
+
+            return shuffledArray.slice(0, 10);
         } catch (error) {
             console.log(error);
         }
-        const randomItems = null;
-        // Logique pour récupérer 10 items aléatoires de la série
-        // Remplacez cette logique par votre propre code pour extraire les items de la série
-        return randomItems;
     }
 
     async createParty(serie_id, user_email){
         let token = crypto.randomUUID().toString();
-        console.log("token :" + token)
 
         const randomItems = await this.getRandomItems(serie_id);
 

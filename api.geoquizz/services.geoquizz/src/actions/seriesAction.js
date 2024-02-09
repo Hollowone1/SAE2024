@@ -14,14 +14,12 @@ export default class seriesAction {
         }
     }
 
-    async getSerieByID(req, res, next){
+    async getSerieByID(id){
         try {
-            const id = req.params.id;
-            const serie = await this.#_service.getSerieById(id);
-            res.json(serie);
+            return await this.#_service.getSerieById(id);
         } catch (error) {
-            next(500);
+            //next(500);
+            throw error;
         }
     }
-
 }

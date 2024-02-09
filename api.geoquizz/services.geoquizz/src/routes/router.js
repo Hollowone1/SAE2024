@@ -27,7 +27,7 @@ router
 
 //post pour créer la partie -> penser à fournir la série nécéssaire pour la création
 //réponse du post contient les data de la partie(token + liste de 10 items)
-//patch pour changer le statue de la partie ->Creer ->En cours ->Fini
+//patch pour changer le statue de la partie ->CREATED ->IN PROGRESS ->FINISHED + SCORE à mettre à jour
 router
     .route("/party")
     .post(partyAction.createParty.bind(partyAction))
