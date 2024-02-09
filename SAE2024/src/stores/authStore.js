@@ -1,5 +1,4 @@
 import {defineStore} from 'pinia'
-import localStorage from "@/plugins/localStorage.js";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
