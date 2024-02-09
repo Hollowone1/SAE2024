@@ -1,4 +1,5 @@
 import {defineStore} from 'pinia'
+import localStorage from "@/plugins/localStorage.js";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -27,6 +28,8 @@ export const useAuthStore = defineStore('auth', {
         }
 
         const data = await response.json()
+
+        localStorage.setItem('username', data.user.username);
 
         this.isAuthenticated = true
         this.user = data.user

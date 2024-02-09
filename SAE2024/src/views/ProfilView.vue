@@ -36,21 +36,12 @@
 <script >
 
 export default {
-  methods: {
-    saveData() {
-      const dataToSave = {
-        Main: 'username',
+  computed: {
+    username() {
+      return localStorage.getItem("username");
+    },
 
-      };
-      this.$saveStorage('exampleKey', dataToSave);
-    },
-    async getData() {
-      const data = await this.$getStorage('exampleKey');
-      console.log(data);
-    },
-    clearData() {
-      this.$clearStorage('exampleKey');
-    },
+
   },
 };
 
