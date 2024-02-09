@@ -6,7 +6,7 @@ const db = knex(knexConfig);
 
 const directusURL = 'http://directus:8055/graphql';
 
-class SeriesService {
+class SeriesServices {
     async getSeries() {
         const query = `
         query series {
@@ -31,8 +31,6 @@ class SeriesService {
                     'Content-Type': 'application/json',
                 }
             });
-
-            console.log(response.data);
 
             return response.data;
         } catch (error) {
@@ -73,8 +71,6 @@ class SeriesService {
                 }
             });
 
-            console.log(response.data);
-
             return response.data;
         } catch (error) {
             console.error("Erreur Axios :", error.response ? error.response.data : error.message);
@@ -83,4 +79,4 @@ class SeriesService {
     }
 }
 
-export default SeriesService;
+export default SeriesServices;

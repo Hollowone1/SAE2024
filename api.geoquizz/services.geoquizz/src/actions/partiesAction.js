@@ -22,7 +22,7 @@ export default class partiesAction {
 
         try {
             await this.#_service.updatePartyStatus(id, newStatus);
-            res.json({ message: 'Etat de la partie mis à jour avec succès.' });
+            res.json({ message: 'Status de la partie mis à jour avec succès.' });
             next();
         } catch (error) {
             console.log(error);
@@ -32,9 +32,15 @@ export default class partiesAction {
     }
 
     async createParty(req, res, next) {
+        const user_email = req.body.user_email;
+        const serie_id = req.body.serie_id;
+
         try {
-            const partie = await this.#_service.createParty(req.body);
-            res.json(partie);
+            const partie = await this.#_service.createParty(serie_id, user_email);
+            res.json({
+                token: partie.token,
+                items: partie.items
+            });
             next();
         } catch (error) {
             console.error(error);
