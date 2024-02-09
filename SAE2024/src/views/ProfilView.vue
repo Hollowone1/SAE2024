@@ -39,7 +39,7 @@ export default {
   methods: {
     saveData() {
       const dataToSave = {
-        mainKey: 'username',
+        Main: 'username',
 
       };
       this.$saveStorage('exampleKey', dataToSave);
