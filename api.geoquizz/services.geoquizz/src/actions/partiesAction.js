@@ -8,9 +8,10 @@ export default class partiesAction {
     async updatePartyStatus(req, res, next){
         const id = req.body.id;
         const newStatus = req.body.status;
+        const newScore = req.body.score;
 
         try {
-            await this.#_service.updatePartyStatus(id, newStatus);
+            await this.#_service.updatePartyStatus(id, newStatus, newScore);
             res.json({ message: 'Status de la partie mis à jour avec succès.' });
         } catch (error) {
             console.log(error);

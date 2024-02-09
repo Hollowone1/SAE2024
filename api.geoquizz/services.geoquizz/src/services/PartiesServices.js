@@ -1,14 +1,13 @@
 import knex from "knex";
 import knexConfig from '../configs/db.config.js'
-
-const db = knex(knexConfig);
-
 import SeriesServices from "../services/SeriesServices.js";
 import SeriesAction from "../actions/seriesAction.js";
 
+const db = knex(knexConfig);
+
 class PartiesServices {
-    async updatePartyStatus(partyId, nouvelEtat){
-        await db('parties').where('id', '=', partyId).update({status: nouvelEtat});
+    async updatePartyStatus(partyId, nouvelEtat, score){
+        await db('parties').where('id', '=', partyId).update({status: nouvelEtat, score: score});
     }
 
     shuffleArray(array) {
@@ -25,18 +24,11 @@ class PartiesServices {
         try {
             const serieData = await seriesActionInstance.getSerieByID(serie_id);
 
-            console.log(serieData)
-
             const itemsArray = serieData.data.Series_by_id.Items;
-
-            console.log(itemsArray);
 
             const shuffledArray = this.shuffleArray([...itemsArray]);
 
-            const randomItems = shuffledArray.slice(0, 10);
-            console.log(randomItems);
-
-            return randomItems;
+            return shuffledArray.slice(0, 10);
         } catch (error) {
             console.log(error);
         }
