@@ -12,7 +12,7 @@ CREATE TABLE `parties`
     `user_email` varchar(128) NOT NULL,
     `status`     varchar(25),
     `token`      varchar(128),
-    `score`      int(2)
+    `score`      int(2),
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-DEFAULT CHARSET = utf8;
+  DEFAULT CHARSET = utf8;

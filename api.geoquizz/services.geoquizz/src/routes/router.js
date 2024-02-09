@@ -2,8 +2,8 @@ import express from 'express';
 import SeriesService from "../services/SeriesService.js";
 import SeriesAction from "../actions/seriesAction.js";
 
-import PartyService from "../services/PartyService.js";
-import PartyAction from "../actions/PartyAction.js";
+import PartyService from "../services/PartiesServices.js";
+import PartyAction from "../actions/partiesAction.js";
 
 const router = express.Router();
 
