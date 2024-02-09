@@ -2,7 +2,7 @@
   <div class="page-container">
     <h2>Devinez où est située cette image ?</h2>
     <div class="game-container">
-      <img src="../assets/a2c7fc86c6b887959f61fd704ff9d8c2bbc1c34f774d3dc41654207db787be9d.webp">
+      <img src="../assets/a2c7fc86c6b887959f61fd704ff9d8c2bbc1c34f774d3dc41654207db787be9d.webp"> <!--voir pour génerer l'image ici-->
       <div class="mapstyle">
         <l-map ref="map" v-model:zoom="zoom" :center="center" :max-zoom="maxZoom" :min-zoom="minZoom" :zoom-control="false" :useGlobalLeaflet="false" @click="placeMarker">
           <l-tile-layer url="https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=b90e089c365242a3a08dbb49a7084a61" layer-type="base" name="OpenStreetMap"></l-tile-layer>
@@ -55,13 +55,13 @@ export default {
   },
   data() {
     return {
-      imageUrl: "../assets/a2c7fc86c6b887959f61fd704ff9d8c2bbc1c34f774d3dc41654207db787be9d.webp",
+      
       zoom: 12,
       center: [48.6921, 6.1844],
       markerLatLng: [48.6921, 6.1844],
       maxZoom: 25,
       minZoom: 1,
-      targetLocation: { lat: 48.6921, lon: 6.1844 },
+      targetLocation: { lat: 48.6921, lon: 6.1844 }, //generer la target location
       distanceParameter: 0.1,
       popupContent: "",
       score: 0,
