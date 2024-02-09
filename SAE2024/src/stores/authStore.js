@@ -29,7 +29,8 @@ export const useAuthStore = defineStore('auth', {
 
         const data = await response.json()
 
-        localStorage.setItem('username', data.user.username);
+        window.localStorage.setItem('username', data.user.username);
+        window.localStorage.setItem('email', data.user.email);
 
         this.isAuthenticated = true
         this.user = data.user

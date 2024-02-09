@@ -3,6 +3,7 @@
 <div class="page-container">
   <h2> Votre profil</h2>
   <h3>{{ username }}</h3>
+  <h3>{{email }}</h3>
   <table>
     <thead>
       <tr>
@@ -38,9 +39,11 @@
 export default {
   computed: {
     username() {
-      return localStorage.getItem("username");
+      return window.localStorage.getItem("username");
     },
-
+    email() {
+      return window.localStorage.getItem("email");
+    },
 
   },
 };
