@@ -1,6 +1,6 @@
 export default {
     saveGameData(data) {
-      window.localStorage.setItem('data', JSON.stringify(data));
+      window.localStorage.setItem('data', JSON.stringify(data.username));
     },
   
     getGameData() {
