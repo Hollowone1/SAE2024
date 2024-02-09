@@ -18,7 +18,7 @@
       <table class="points-table">
         <thead>
           <tr>
-            <th>Essais</th>
+            <th>Essais Restants</th>
             <th>Score</th>
             <th>Meilleure Distance</th>
             
@@ -26,12 +26,18 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{ index + 1 }}</td>
+            <td>{{ remainingAttempts }}</td>
             <td>{{score}}</td>
             <td>{{ bestDistance }} km</td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div v-if="gameOver">
+      <p>Fin de la partie !</p>
+      <p>Score final : {{ score }}</p>
+      <p>Meilleure distance : {{ bestDistance }} km</p>
+      <button @click="resetGame">Recommencer</button>
     </div>
   </div>
   </template>
@@ -58,52 +64,79 @@ export default {
       maxZoom: 25,
       minZoom: 1,
       targetLocation: { lat: 48.6921, lon: 6.1844 },
-      distanceParameter: 0.1, // Distance maximale pour 5 points
+      distanceParameter: 0.1,
       popupContent: "",
       score: 0,
       bestDistance: 100,
+      totalAttempts: 4,
+      remainingAttempts: 4,
+      gameOver: false,
     };
   },
   methods: {
-    checkDistance() {
-      const markerLatLng = L.latLng(this.markerLatLng[0], this.markerLatLng[1]);
-      const targetLatLng = L.latLng(this.targetLocation.lat, this.targetLocation.lon);
-      const distance = markerLatLng.distanceTo(targetLatLng) / 1000; 
-      console.log(distance); 
+      checkDistance() {
+        const markerLatLng = L.latLng(this.markerLatLng[0], this.markerLatLng[1]);
+        const targetLatLng = L.latLng(this.targetLocation.lat, this.targetLocation.lon);
+        const distance = markerLatLng.distanceTo(targetLatLng) / 1000; 
+        console.log(distance); 
 
-      let points = 0;
-      if (distance < this.distanceParameter) {
-        points = 5;
-      } else if (distance < 3 * this.distanceParameter) {
-        points = 3;
-      } else if (distance < 4 * this.distanceParameter) {
-        points = 2;
+        let points = 0;
+        if (distance < this.distanceParameter) {
+          points = 5;
+        } else if (distance < 3 * this.distanceParameter) {
+          points = 3;
+        } else if (distance < 4 * this.distanceParameter) {
+          points = 2;
+        } else {
+          points = 0;
+        }
+
+        this.popupContent = `Vous avez gagné ${points} points !`;
+
+        this.score += points;
+        if (distance < this.bestDistance) {
+          this.bestDistance = distance;
+        }
+        if (this.remainingAttempts > 0) {
+        this.popupContent = `Vous avez gagné ${points} points !`;
+        this.score += points;
+        if (distance < this.bestDistance) {
+          this.bestDistance = distance;
+        }
+
+        this.remainingAttempts--;
+        if (this.remainingAttempts === 0) {
+          this.gameOver = true;
+        }
       } else {
-        points = 0;
+        this.popupContent = "Vous n'avez plus d'essais restants.";
       }
 
-      this.popupContent = `Vous avez gagné ${points} points !`;
-
-      this.score += points;
-      if (distance < this.bestDistance) {
-        this.bestDistance = distance;
-      }
+      },
+      placeMarker(event) {
+        this.markerLatLng = [event.latlng.lat, event.latlng.lng];
+      },
+      onMarkerDragEnd(event) {
+        this.markerLatLng = [event.target.getLatLng().lat, event.target.getLatLng().lng];
+      },
+      resetGame() {
+      this.score = 0;
+      this.bestDistance = 100;
+      this.remainingAttempts = this.totalAttempts;
+      this.gameOver = false;
+      this.markerLatLng = [this.center[0], this.center[1]];
     },
-    placeMarker(event) {
-      this.markerLatLng = [event.latlng.lat, event.latlng.lng];
     },
-    onMarkerDragEnd(event) {
-      this.markerLatLng = [event.target.getLatLng().lat, event.target.getLatLng().lng];
-    },
-  },
-};
+  };
 </script>
+
+
 <style scoped>
-.mapstyle{
-  position: relative;
-}
-map{
-  position: absolute;
-}
+    .mapstyle{
+      position: relative;
+    }
+    map{
+      position: absolute;
+    }
 
 </style>
