@@ -25,4 +25,3 @@ app.use(catchAllErrors);
 
 export default app;
 
-

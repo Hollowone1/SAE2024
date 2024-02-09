@@ -55,4 +55,5 @@ class PartiesServices {
 
 }
 
+
 export default PartiesServices;

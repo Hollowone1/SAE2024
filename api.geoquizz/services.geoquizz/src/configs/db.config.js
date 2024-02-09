@@ -8,3 +8,4 @@ export default {
         database: process.env.MYSQL_DATABASE,
     },
 };
+

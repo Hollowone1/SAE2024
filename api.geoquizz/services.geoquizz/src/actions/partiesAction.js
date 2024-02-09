@@ -20,6 +20,7 @@ export default class partiesAction {
         }
     }
 
+    
     async createParty(req, res, next) {
         const user_email = req.body.user_email;
         const serie_id = req.body.serie_id;

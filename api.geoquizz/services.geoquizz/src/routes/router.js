@@ -34,6 +34,4 @@ router
     .patch(partyAction.updatePartyStatus.bind(partyAction))
     .all((req, res, next) => next(405));
 
-
-
 export default router;
