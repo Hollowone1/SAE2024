@@ -35,9 +35,10 @@
     </div>
     <div v-if="gameOver">
       <p>Fin de la partie !</p>
+      <button @click="resetGame" class="rejouer">Recommencer</button>
+      
       <p>Score final : {{ score }}</p>
       <p>Meilleure distance : {{ bestDistance }} km</p>
-      <button @click="resetGame" class="rejouer">Recommencer</button>
     </div>
   </div>
   </template>
