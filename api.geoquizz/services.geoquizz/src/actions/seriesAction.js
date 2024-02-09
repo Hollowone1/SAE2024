@@ -9,9 +9,7 @@ export default class seriesAction {
         try {
             const series = await this.#_service.getSeries();
             res.json(series);
-            next();
         } catch (error) {
-            console.error(error);
             next(500);
         }
     }
@@ -21,9 +19,7 @@ export default class seriesAction {
             const id = req.params.id;
             const serie = await this.#_service.getSerieById(id);
             res.json(serie);
-            next();
         } catch (error) {
-            console.error(error);
             next(500);
         }
     }

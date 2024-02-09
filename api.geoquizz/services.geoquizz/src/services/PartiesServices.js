@@ -1,4 +1,3 @@
-import axios from "axios";
 import knex from "knex";
 import knexConfig from '../configs/db.config.js'
 

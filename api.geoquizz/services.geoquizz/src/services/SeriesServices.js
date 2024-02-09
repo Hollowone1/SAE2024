@@ -2,8 +2,6 @@ import axios from "axios";
 import knex from "knex";
 import knexConfig from '../configs/db.config.js'
 
-const db = knex(knexConfig);
-
 const directusURL = 'http://directus:8055/graphql';
 
 class SeriesServices {
