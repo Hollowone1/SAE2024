@@ -2,8 +2,8 @@ import express from 'express';
 import SeriesServices from "../services/SeriesServices.js";
 import SeriesAction from "../actions/seriesAction.js";
 
-import PartiesServices from "../services/PartiesServices.js";
-import PartiesAction from "../actions/PartiesAction.js";
+import PartiesServices from "../services/partiesServices.js";
+import PartiesAction from "../actions/partiesAction.js";
 
 const router = express.Router();
 
@@ -27,15 +27,13 @@ router
 
 //post pour créer la partie -> penser à fournir la série nécéssaire pour la création
 //réponse du post contient les data de la partie(token + liste de 10 items)
-router
-    .route("/party")
-    .post(partyAction.createParty.bind(partyAction))
-    .all((req, res, next) => next(405));
-
 //patch pour changer le statue de la partie ->Creer ->En cours ->Fini
 router
     .route("/party")
+    .post(partyAction.createParty.bind(partyAction))
     .patch(partyAction.updatePartyStatus.bind(partyAction))
     .all((req, res, next) => next(405));
+
+
 
 export default router;
