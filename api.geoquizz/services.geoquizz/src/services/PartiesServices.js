@@ -34,6 +34,10 @@ class PartiesServices {
         }
     }
 
+    async getParty(id) {
+         await db('parties').select('*').where('id', '=', id).first();
+    }
+
     async createParty(serie_id, user_email){
         let token = crypto.randomUUID().toString();
 
