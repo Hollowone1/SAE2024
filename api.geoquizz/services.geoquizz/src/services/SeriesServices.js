@@ -9,6 +9,7 @@ class SeriesServices {
         const query = `
         query series {
             Series {
+                id
                 title
                 difficulty
                 description

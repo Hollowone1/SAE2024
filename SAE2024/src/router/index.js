@@ -5,6 +5,7 @@ import RegisterView from "@/views/RegisterView.vue"
 import GameView from "@/views/GameView.vue"
 import ProfilView from "@/views/ProfilView.vue"
 import {useAuthStore} from "@/stores/authStore.js";
+import SelectSerieView from "@/views/SelectSerieView.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -27,8 +28,13 @@ const router = createRouter({
         {
             path: '/nouvelle-partie',
             name: 'nouvelle-partie',
-            component: GameView,
+            component: SelectSerieView,
             // meta: { requiresAuth: true }
+        },
+        {
+            path: '/game',
+            name: 'game',
+            component: GameView,
         },
         {
             path: '/profil',
