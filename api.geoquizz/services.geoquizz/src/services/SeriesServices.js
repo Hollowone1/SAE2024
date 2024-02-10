@@ -43,7 +43,9 @@ class SeriesServices {
             Series_by_id(id: ${id}) {
                 Items {
                     id
-                    image
+                    image {
+                        id
+                    }
                     coordinates
                     title
                     description
@@ -68,7 +70,6 @@ class SeriesServices {
                     'Content-Type': 'application/json',
                 }
             });
-
             return response.data;
         } catch (error) {
             console.error("Erreur Axios :", error.response ? error.response.data : error.message);

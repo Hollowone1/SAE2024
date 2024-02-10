@@ -27,7 +27,6 @@ export default class partiesAction {
         try {
             const partie = await this.#_service.createParty(serie_id, user_email);
             res.json({
-                partie: partie,
                 token: partie.token,
                 items: partie.items
             });

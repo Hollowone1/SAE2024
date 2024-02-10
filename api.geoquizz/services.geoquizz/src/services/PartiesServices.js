@@ -2,7 +2,7 @@ import knex from "knex";
 import knexConfig from '../configs/db.config.js'
 import SeriesServices from "../services/SeriesServices.js";
 import SeriesAction from "../actions/seriesAction.js";
-import { initializeWebSocketServer,notifyGameCreation } from '../../../websocket.geoquizz/services/notifyService.js';
+//import { initializeWebSocketServer,notifyGameCreation } from '../../../websocket.geoquizz/services/notifyService.js';
 
 
 const db = knex(knexConfig);
@@ -25,9 +25,7 @@ class PartiesServices {
 
         try {
             const serieData = await seriesActionInstance.getSerieByID(serie_id);
-
             const itemsArray = serieData.data.Series_by_id.Items;
-
             const shuffledArray = this.shuffleArray([...itemsArray]);
 
             return shuffledArray.slice(0, 10);
@@ -42,9 +40,7 @@ class PartiesServices {
 
     async createParty(serie_id, user_email){
         let token = crypto.randomUUID().toString();
-
         const randomItems = await this.getRandomItems(serie_id);
-
         const insertedPartie = await db('parties').insert({
             user_email: user_email,
             serie_id: serie_id,
