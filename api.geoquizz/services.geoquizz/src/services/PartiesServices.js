@@ -56,7 +56,7 @@ class PartiesServices {
         const createdPartie = await db('parties').where('id', insertedPartie[0]).first();
         createdPartie.items = randomItems;
 
-        //(createdPartie);
+        //notifyGameCreation(createdPartie);
 
         return createdPartie;
     }
