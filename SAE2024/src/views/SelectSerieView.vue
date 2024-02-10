@@ -33,7 +33,6 @@ export default {
           });
       const data = await response.json();
       localStorage.setItem("party", JSON.stringify(data));
-      // this.$router.push("/game");
       this.$router.push({path: '/game'});
     },
     async getSeries() {
