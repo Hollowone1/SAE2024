@@ -22,4 +22,14 @@ export default class seriesAction {
             throw error;
         }
     }
+
+    async getSerieRouteByID(req, res, next){
+        try {
+            const id = req.params.id;
+            const serie = await this.getSerieByID(id);
+            res.json(serie);
+        } catch (error) {
+            next(500);
+        }
+    }
 }

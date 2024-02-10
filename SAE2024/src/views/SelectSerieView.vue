@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="page-container">
     <h1>Choisissez une série</h1>
-    <div v-for="serie in series" :key="serie.id" @click="handleSerieClick(serie.id)">
+    <div v-for="serie in series" :key="serie.id" @click="handleSerieClick(serie.id)" class="nav-link">
       <p>{{ serie.title }}</p>
       <p>{{ serie.description }}</p>
     </div>
@@ -32,8 +32,9 @@ export default {
             body: JSON.stringify(party),
           });
       const data = await response.json();
-      localStorage.setItem("party", JSON.stringify(data.item));
+      localStorage.setItem("party", JSON.stringify(data));
       // this.$router.push("/game");
+      this.$router.push({path: '/game'});
     },
     async getSeries() {
       const response = await fetch('http://localhost:3333/api/series');

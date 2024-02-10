@@ -41,21 +41,27 @@ class SeriesServices {
     async getSerieById(id){
         const query = `
         query Series_by_id {
-            Series_by_id(id: ${id}) {
-                Items {
-                    id
-                    image
-                    coordinates
-                    title
-                    description
-                }       
+            Series_by_id(id: "1") {
+                id
                 title
                 difficulty
                 coordinates
                 description
                 maxzoom
-            }
-        }
+                Items {
+                    id
+                    coordinates
+                    title
+                    description
+                    image {
+                        id
+                        filename_download
+                    }
+                }
+    }
+}
+
+
     `;
 
         try {
