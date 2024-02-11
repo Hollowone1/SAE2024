@@ -7,10 +7,11 @@
 </template>
 
 <script>
+import {useAuthStore} from "@/stores/authStore.js";
 export default {
   data() {
     return {
-      isLoggedIn: false,
+      isLoggedIn: useAuthStore().isAuthenticated,
     };
   },
 };

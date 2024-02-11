@@ -46,7 +46,6 @@ export const useAuthStore = defineStore('auth', {
     logout() {
       this.isAuthenticated = false
       this.user = null
-      this.errorMessage = null
     },
   },
 })
@@ -91,19 +90,3 @@ export const useRegisterStore = defineStore('user', {
     },
   },
 })
-
-// You should not use `fetch` directly here because it is asynchronous
-// and won't return the data you need. It's better to create a separate function or move the login logic to the authentication action.
-// I've commented it out.
-
-// export function getData() {
-//   const baseUrlSignIn = 'http://localhost:2082/api/users/signin'
-//   const base64Credentials = btoa(`${username}:${password}`)
-//   fetch(baseUrlSignIn, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Basic ${base64Credentials}`,
-//     },
-//   })
-// }

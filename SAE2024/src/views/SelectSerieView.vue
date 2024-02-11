@@ -25,6 +25,7 @@ export default {
         serie_id: serieId.toString(),
         user_email: localStorage.getItem("email"),
       };
+      console.log(party);
       const response = await fetch("http://localhost:3333/api/party",
           {
             method: "POST",

@@ -42,6 +42,15 @@ const router = createRouter({
             component: ProfilView,
             // meta: { requiresAuth: true }
         },
+        {
+            path: '/logout',
+            name: 'logout',
+            beforeEnter: (to, from, next) => {
+                const authStore = useAuthStore();
+                authStore.logout();
+                next({ path: '/' });
+            }
+        }
     ]
 })
 

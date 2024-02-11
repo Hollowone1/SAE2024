@@ -43,6 +43,9 @@ class PartiesServices {
 
         const randomItems = await this.getRandomItems(serie_id);
 
+        const seriesActionInstance = new SeriesAction(new SeriesServices());
+        const serieData= await seriesActionInstance.getSerieByID(serie_id);
+
         const insertedPartie = await db('parties').insert({
             user_email: user_email,
             serie_id: serie_id,
@@ -53,6 +56,8 @@ class PartiesServices {
 
         const createdPartie = await db('parties').where('id', insertedPartie[0]).first();
         createdPartie.items = randomItems;
+        createdPartie.maxzoom = serieData.data.Series_by_id.maxzoom;
+        createdPartie.coordinates = serieData.data.Series_by_id.coordinates;
 
         return createdPartie;
     }

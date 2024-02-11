@@ -4,6 +4,7 @@
     <router-link to="/"><h1>Géo-Quizz</h1></router-link>
     <div v-if="isLoggedIn">
       <router-link :to="{ name: 'profil' }">Mon profil</router-link>
+      <router-link :to="{ name: 'logout' }">Déconnexion</router-link>
     </div>
     <div v-else>
       <router-link :to="{ name: 'register' }">Inscription</router-link>
