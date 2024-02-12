@@ -16,7 +16,7 @@ export default defineConfig({
   server: {
     proxy: {
       '^/users': {
-        target: 'http://localhost:2082/',
+        target: 'http://docketu.iutnc.univ-lorraine.fr:45053/',
         ws: true,
         changeOrigin: true
       },

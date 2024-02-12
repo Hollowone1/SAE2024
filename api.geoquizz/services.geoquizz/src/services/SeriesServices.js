@@ -2,7 +2,7 @@ import axios from "axios";
 import knex from "knex";
 import knexConfig from '../configs/db.config.js'
 
-const directusURL = 'http://directus:8055/graphql';
+const directusURL = 'http://docketu.iutnc.univ-lorraine.fr:45056/graphql';
 
 class SeriesServices {
     async getSeries() {

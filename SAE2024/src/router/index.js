@@ -29,7 +29,7 @@ const router = createRouter({
             path: '/nouvelle-partie',
             name: 'nouvelle-partie',
             component: SelectSerieView,
-            // meta: { requiresAuth: true }
+            meta: { requiresAuth: true }
         },
         {
             path: '/game',
@@ -40,7 +40,7 @@ const router = createRouter({
             path: '/profil',
             name: 'profil',
             component: ProfilView,
-            // meta: { requiresAuth: true }
+            meta: { requiresAuth: true }
         },
         {
             path: '/logout',

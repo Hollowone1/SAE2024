@@ -1,5 +1,12 @@
 # Atelier - GeoQuizz
 
+## Liens 
+http://docketu.iutnc.univ-lorraine.fr:45057 : Lien vers le fron-end
+http://docketu.iutnc.univ-lorraine.fr:45051 : Lien vers l'api node
+http://docketu.iutnc.univ-lorraine.fr:45053 : Lien vers l'api d'authentification
+http://docketu.iutnc.univ-lorraine.fr:45056 : Lien vers le directus
+
+
 ## Constitution du groupe:  
 - Bresson Jules
 - Rionde Antoine

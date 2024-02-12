@@ -128,19 +128,14 @@ services:
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "d1r3ctu5"
 
-  geoquizz.client:
-    build:
-      context: ./SAE2024
-      dockerfile: Dockerfile
-    volumes:
-      - ./SAE2024/:/app
-      - /app/node_modules
+  web:
+    image: nginx:latest
     ports:
-      - "45056:3000"
-    working_dir: /app
+      - "45057:80"
+    environment:
+      - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
+      - https_proxy=http://www-cache-iutnc.univ-lorraine.fr:3128
+    volumes:
+      - ./SAE2024/dist:/usr/share/nginx/html
     networks:
       - geoquizz.net
-    depends_on:
-      - api.geoquizz-auth
-      - api.services.geoquizz
-      - directus

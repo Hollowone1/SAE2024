@@ -26,7 +26,7 @@ export default {
         user_email: localStorage.getItem("email"),
       };
       console.log(party);
-      const response = await fetch("http://localhost:3333/api/party",
+      const response = await fetch("http://docketu.iutnc.univ-lorraine.fr:45051/api/party",
           {
             method: "POST",
             headers: { "Content-Type": "application/json", },
@@ -37,7 +37,7 @@ export default {
       this.$router.push({path: '/game'});
     },
     async getSeries() {
-      const response = await fetch('http://localhost:3333/api/series');
+      const response = await fetch('http://docketu.iutnc.univ-lorraine.fr:45051/api/series');
       const data = await response.json();
       this.series = data.data.Series;
       console.log(this.series);

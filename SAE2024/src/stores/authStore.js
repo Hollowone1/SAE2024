@@ -11,7 +11,7 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async authenticate(username, password) {
       try {
-        const baseUrlSignIn = 'http://localhost:2082/api/users/signin'
+        const baseUrlSignIn = 'http://docketu.iutnc.univ-lorraine.fr:45053/api/users/signin'
         const base64Credentials = btoa(`${username}:${password}`)
         const response = await fetch(baseUrlSignIn, {
           method: 'POST',
@@ -60,7 +60,7 @@ export const useRegisterStore = defineStore('user', {
   actions: {
     async signup() {
       try {
-        const baseUrlSignUp = 'http://localhost:2082/api/users/signup'
+        const baseUrlSignUp = 'http://docketu.iutnc.univ-lorraine.fr:45053/api/users/signup'
         const base64Credentials = btoa(`${this.username}:${this.password}`)
         const formData = {
           username: this.username,

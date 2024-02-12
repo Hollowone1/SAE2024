@@ -2,7 +2,7 @@ import express from 'express';
 import SeriesServices from "../services/SeriesServices.js";
 import SeriesAction from "../actions/seriesAction.js";
 
-import PartiesServices from "../services/partiesServices.js";
+import PartiesServices from "../services/PartiesServices.js";
 import PartiesAction from "../actions/partiesAction.js";
 
 const router = express.Router();
