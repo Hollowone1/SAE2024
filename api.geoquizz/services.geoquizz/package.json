@@ -7,7 +7,9 @@
   "license": "ISC",
   "scripts": {
     "start": "node server.js",
-    "dev": "NODE_ENV=development nodemon --legacy-watch server.js"
+    "dev": "NODE_ENV=development nodemon server.js",
+    "dev:windows": "NODE_ENV=development && nodemon --legacy-watch server.js",
+    "watch": "NODE_ENV=development nodemon --watch  server.js"
   },
   "dependencies": {
     "axios": "^1.6.7",
